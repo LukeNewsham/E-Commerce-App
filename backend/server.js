@@ -17,17 +17,17 @@ app.use('/users', userRouter); //connecting variable to all URL starting with us
 const userDetailsRouter = require('./routes/user_details.js')
 app.use('/user_details', userDetailsRouter);
 
-//products
-const productsRouter = require('./routes/products.js')
-app.use('/products', productsRouter);
+// //products
+// const productsRouter = require('./routes/products.js')
+// app.use('/products', productsRouter);
 
-//basket
-const basketRouter = require('./routes/basket.js')
-app.use('/basket', basketRouter);
+// //basket
+// const basketRouter = require('./routes/basket.js')
+// app.use('/basket', basketRouter);
 
-//orders
-const orderRouter = require('./routes/orders.js')
-app.use('/orders', orderRouter);
+// //orders
+// const orderRouter = require('./routes/orders.js')
+// app.use('/orders', orderRouter);
 
 
 
