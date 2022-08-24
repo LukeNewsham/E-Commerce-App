@@ -1,8 +1,10 @@
 import './App.css';
+import UsersList from './components/userlist';
+
 
 function App() {
   return (
-    <h1> Setup </h1>
+    <UsersList />
   );
 }
 

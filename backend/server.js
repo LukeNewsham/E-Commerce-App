@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express()
+const cors = require('cors')
 const pool = require("./db.js")
 
 
 //allows access to request body
 app.use(express.json())
+app.use(cors())
 
 
 //ROUTES
