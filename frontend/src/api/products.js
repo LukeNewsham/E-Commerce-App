@@ -1,16 +1,16 @@
 import { api_endpoint } from "./index.js";
 
 //function to get all users
-export const getUsers = async () => {
-  const response = await fetch(`${api_endpoint}/users`);
-  const users = await response.json();
+export const getProducts = async () => {
+  const response = await fetch(`${api_endpoint}/products`);
+  const products = await response.json();
   console.log('worked')
 
-  return users;
+  return products;
 };
 
 
-//function to add a new user with a json body
+//function to add a new product with a json body
 export const addNewUser = async (newUsername, newFirst_name, newLast_name, newEmail) => {
     const response = await fetch(`${api_endpoint}/users`, {
         method: 'POST',

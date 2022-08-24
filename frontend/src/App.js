@@ -1,10 +1,10 @@
 import './App.css';
-import UsersList from './components/userlist';
+import ProductsList from './components/productList';
 
 
 function App() {
   return (
-    <UsersList />
+    <ProductsList />
   );
 }
 
