@@ -1,0 +1,532 @@
+openapi: 3.0.1
+info:
+  title: E-Commerce App
+  version: 1.0.0
+  description: >-
+    A full stack PERN app for selling products online and keeping record of
+    customer data.
+paths:
+  /users:
+    summary: Get all users data
+    description: >-
+      This path is used to retrieve all of the users data from the postgres
+      database.
+    get:
+      summary: 'Gets all users data '
+      description: Retrieves all users data from the postgres database
+      operationId: get_users
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                users:
+                  value: |-
+                    [{"id": 1,
+                        "username": "BeckaXChing",  "first_name": "Rebecca",    "last_name": "Ching","email": "rbching@outlook.com","password": null
+                      },{"id": 2,    "username": "Lukexnewsham",    "first_name": "Luke",    "last_name": "Newsham",    "email": "luke.newsham@outlook.com",    "password": null}]
+        default:
+          description: Default error sample response
+      tags:
+        - Users
+    post:
+      summary: Creates a new user
+      description: Sends new user data to the postgres database
+      operationId: post_users
+      requestBody:
+        description: A new order object
+        content:
+          application/json:
+            schema:
+             $ref: '#/components/schemas/Users'
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Users
+  /users/:id:
+    summary: Get user from id
+    description: This path uses an ID to collect user data from the postgres database
+    get:
+      summary: Gets user data from id
+      description: >-
+        This path is used to retrieve user data from a specified ID from the
+        postgres database
+      operationId: get_user_id
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                users/:id:
+                  value: |-
+                    [
+                      {
+                        "id": 1,
+                        "username": "BeckaXChing",
+                        "first_name": "Rebecca",
+                        "last_name": "Ching",
+                        "email": "rbching@outlook.com",
+                        "password": null
+                      }
+                    ]
+        default:
+          description: Default error sample response
+      tags:
+        - Users
+    delete:
+      summary: Deletes user data from id
+      description: >-
+        This path is used to delete user data from a specified ID from the
+        postgres database
+      operationId: delete_user_id
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Users
+  /users_details:
+    summary: Get all user details data
+    description: >-
+      This path is used to retrieve all of the user details data from the
+      postgres database.
+    get:
+      summary: Gets all users details
+      description: Retrieves all users details data from the postgres database
+      operationId: get_usersDetails
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                user_details:
+                  value: |-
+                    [
+                      {
+                        "id": 1,
+                        "user_id": 1,
+                        "address": "Broadwater Road",
+                        "city": "Reading",
+                        "postcode": "RGXX XXX",
+                        "country": "United Kingdom",
+                        "mobile": null
+                      },
+                      {
+                        "id": 2,
+                        "user_id": 3,
+                        "address": "Broadwater Road",
+                        "city": "Reading",
+                        "postcode": "RGXX XXX",
+                        "country": "United Kingdom",
+                        "mobile": null
+                      }]
+        default:
+          description: Default error sample response
+      tags:
+        - Users_details
+    post:
+      summary: Creates new user details
+      description: Sends new user details data to the postgres database
+      operationId: post_userDetails
+      requestBody:
+        description: A new user details object
+        content:
+          application/json:
+            schema:
+             $ref: '#/components/schemas/Users_details'
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Users_details
+  /users_details/:id:
+    summary: Get user details from id
+    description: >-
+      This path uses an ID to collect user details data from the postgres
+      database
+    get:
+      summary: Gets user details data from id
+      description: >-
+        This path is used to retrieve user details data from a specified ID from
+        the postgres database
+      operationId: get_userDetails_id
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                user_details_id:
+                  value: |-
+                    [
+                      {
+                        "id": 1,
+                        "user_id": 1,
+                        "address": "Broadwater Road",
+                        "city": "Reading",
+                        "postcode": "RGXX XXX",
+                        "country": "United Kingdom",
+                        "mobile": null
+                      }
+                    ]
+        default:
+          description: Default error sample response
+      tags:
+        - Users_details
+    delete:
+      summary: Deletes user details data from id
+      description: >-
+        This path is used to delete user details data from a specified ID from
+        the postgres database
+      operationId: delete_userDetails_id
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Users_details
+  /products:
+    summary: Get all product data
+    description: >-
+      This path is used to retrieve all of the products data from the postgres
+      database.
+    get:
+      summary: 'Gets all products data '
+      description: Retrieves all products data from the postgres database
+      operationId: get_products
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                products:
+                  value: |-
+                    [
+                      {
+                        "id": 5,
+                        "name": "Painting",
+                        "description": "Realistic painting of a mountain ",
+                        "price": "12.99",
+                        "quanity": 10,
+                        "category_id": 1
+                      },
+                      {
+                        "id": 6,
+                        "name": "Sofa",
+                        "description": "Comfy Red Sofa",
+                        "price": "129.99",
+                        "quanity": 100,
+                        "category_id": 2
+                      }
+        default:
+          description: Default error sample response
+      tags:
+        - Products
+    post:
+      summary: Creates a product
+      description: Sends new product data to the postgres database
+      operationId: post_product
+      requestBody:
+        description: A new product object
+        content:
+          application/json:
+            schema:
+             $ref: '#/components/schemas/Products'
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Products
+  /products/:id:
+    summary: Get product from id
+    description: This path uses an ID to collect product data from the postgres database
+    get:
+      summary: Gets product data from id
+      description: >-
+        This path is used to retrieve product data from a specified ID from the
+        postgres database
+      operationId: get_product_id
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Products
+    delete:
+      summary: Deletes product data from id
+      description: >-
+        This path is used to delete product data from a specified ID from the
+        postgres database
+      operationId: delete_product_id
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Products
+  /categories:
+    summary: Get all categories
+    description: >-
+      This path is used to retrieve all product categories data from the
+      postgres database
+    get:
+      summary: Gets all product category data
+      description: >-
+        This path is used to retrieve all product categories from the postgres
+        database
+      operationId: get_categories
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                product/categories:
+                  value: |-
+                    [
+                      {
+                        "id": 1,
+                        "name": "Wall Art",
+                        "description": "Art for the walls"
+                      },
+                      {
+                        "id": 2,
+                        "name": "Furniture",
+                        "description": "Home living furniture"
+                      }
+                    ]
+        default:
+          description: Default error sample response
+      tags:
+        - Products
+  /categories/:id:
+    summary: Get products from category id
+    description: >-
+      This path uses a category ID to collect product data from the postgres
+      database
+    get:
+      summary: Gets all products data from a category ID
+      description: >-
+        This path is used to retrieve all product data from a category ID from
+        the postgres database
+      operationId: get_products_categoryId
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                product/categroiesId:
+                  value: |-
+                    [
+                      {
+                        "id": 5,
+                        "name": "Painting",
+                        "description": "Realistic painting of a mountain ",
+                        "price": "12.99",
+                        "quanity": 10,
+                        "category_id": 1
+                      }
+                    ]
+        default:
+          description: Default error sample response
+      tags:
+        - Products
+  /baskets:
+    summary: Get all basket data
+    description: >-
+      This path is used to retrieve all of the baskets data from the postgres
+      database.
+    post:
+      summary: Creates a new basket item
+      description: Sends new basket item data to the postgres database
+      operationId: post_basket
+      requestBody:
+        description: A new basket item object
+        content:
+          application/json:
+            schema:
+             $ref: '#/components/schemas/Baskets'
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Baskets
+  /baskets/user/:id:
+    summary: Get basket data from a user id
+    description: This path uses a user ID to collect basket data from the postgres database
+    get:
+      summary: Gets basket data from a user id
+      description: >-
+        This path is used to retrieve basket data from a user ID from the
+        postgres database
+      operationId: get_basket_userId
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                basket_userId:
+                  value: |-
+                    [
+                      {
+                        "id": 2,
+                        "product_id": 5,
+                        "quanity": 1,
+                        "user_id": 1
+                      },
+                      {
+                        "id": 3,
+                        "product_id": 5,
+                        "quanity": 1,
+                        "user_id": 1
+                      },
+                      {
+                        "id": 4,
+                        "product_id": 6,
+                        "quanity": 1,
+                        "user_id": 1
+                      }]
+        default:
+          description: Default error sample response
+      tags:
+        - Baskets
+  /baskets/:id:
+    summary: Get basket data from id
+    description: This path uses an ID to collect basket data from the postgres database
+    delete:
+      summary: Deletes basket data from id
+      description: >-
+        This path is used to delete basket data from a specified ID from the
+        postgres database
+      operationId: delete_basket_id
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Baskets
+  /orders/user/:id:
+    summary: Get orders data from a user id
+    description: This path uses a user ID to collect orders data from the postgres database
+    get:
+      summary: Gets orders data from a user id
+      description: >-
+        This path is used to retrieve basket data from a user ID from the
+        postgres database
+      operationId: get_orders_userId
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                orders_userId:
+                  value: |-
+                    [
+                      {
+                        "id": 3,
+                        "product_id": 5,
+                        "quanity": 1,
+                        "user_id": 1,
+                        "payment_details_id": 3,
+                        "order_status": "OPEN",
+                        "time_created": null
+                      },
+                      {
+                        "id": 4,
+                        "product_id": 6,
+                        "quanity": 2,
+                        "user_id": 1,
+                        "payment_details_id": 4,
+                        "order_status": "OPEN",
+                        "time_created": null
+                      },
+                      {
+                        "id": 5,
+                        "product_id": 5,
+                        "quanity": 1,
+                        "user_id": 1,
+                        "payment_details_id": 3,
+                        "order_status": "OPEN",
+                        "time_created": null
+                      }]
+        default:
+          description: Default error sample response
+      tags:
+        - Orders
+    post:
+      summary: Creates a new order from user id basket
+      description: >-
+        This path is used to send new order data to the postgres database which
+        is a copy of the basket with the users ID. The basket items with the
+        users ID is then deleted.
+      operationId: post_order
+      requestBody:
+        description: A new order object
+        content:
+          application/json:
+            schema:
+             $ref: '#/components/schemas/Orders'
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Orders
+        
+        
+components:
+  schemas:
+    Users:
+      type: object
+      properties:
+        username:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+      xml:
+        name: Order
+    Users_details:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        address:
+          type: string
+        city:
+          type: string
+        postcode:
+          type: string
+        country:
+          type: string
+        mobile:
+          type: integer
+      xml:
+        name: Order
+    Products:
+      type: object
+      properties:
+        name:
+          type: string
+        description :
+          type: string
+        price:
+          type: integer
+        quanity:
+          type: integer
+        category:
+          type: string
+      xml:
+        name: Order
+    Baskets:
+      type: object
+      properties:
+        product_id:
+          type: integer
+        quanity:
+          type: integer
+        user_id:
+          type: integer
+      xml:
+        name: Order
+    Orders:
+      type: object
+      properties:
+      xml:
+        name: Order

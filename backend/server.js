@@ -21,9 +21,9 @@ app.use('/user_details', userDetailsRouter);
 const productsRouter = require('./routes/products.js')
 app.use('/products', productsRouter);
 
-// //basket
-const basketRouter = require('./routes/basket.js')
-app.use('/basket', basketRouter);
+// //baskets
+const basketsRouter = require('./routes/baskets.js')
+app.use('/baskets', basketsRouter);
 
 // //orders
 const orderRouter = require('./routes/orders and checkout.js')

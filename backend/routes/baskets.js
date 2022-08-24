@@ -3,7 +3,7 @@ const router = express.Router()
 const pool = require('../db')
 
 
-//all start with /basket
+//all start with /baskets
 
 //GET ALL BASKET ITEMS BY USER ID
 router.get('/user/:id', async (req, res) => { 
