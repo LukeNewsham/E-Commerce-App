@@ -9,7 +9,7 @@ export default function Navbar() {
                 <li> <Link to='/' className = 'homePage'> Home </Link> </li>
                 <li> <Link to='/products' className = 'productsPage'> Products </Link> </li>
                 <li> <Link to='/basket' className = 'basketPage'> Basket </Link> </li>
-                <li> <Link to='/account' className = 'accountPage'> Account </Link> </li>
+                <li> <Link to='/login' className = 'loginPage'> Login </Link> </li>
             </ul>
         </div>
     )

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router()
 const pool = require('../db')
+const bcrypt = require('bcrypt')
 
 
 //all start with /users
@@ -17,14 +18,18 @@ router.get('/', async (req, res) => {
 
 //CREATE A USER 
 router.post('/', async (req, res) => {
-    const {username, first_name, last_name, email} = req.body;  
-    console.log(req.body)
+    const {username, first_name, last_name, email, password} = req.body;  
+    
     try {
+        const hashedPassword = await bcrypt.hash(password, 10)
         const addUser = await pool.query(
-            'INSERT INTO users (username, first_name, last_name, email) VALUES ($1, $2, $3, $4)', 
-            [username, first_name, last_name, email],
-        );      
-        res.json(`User ${username}, was successfully added`)        
+            'INSERT INTO users (username, first_name, last_name, email, password) VALUES ($1, $2, $3, $4, $5)', 
+            [username, first_name, last_name, email, hashedPassword],
+        );   
+          
+        res.json(`User ${username}, was successfully added`) 
+        
+          
     } catch (err) {
         console.error(err.message);
     }
