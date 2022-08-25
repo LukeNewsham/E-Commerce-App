@@ -7,6 +7,7 @@ import React, {useState, useEffect} from 'react';
 import HomePage from './pages/home';
 import ProductsPage from './pages/products';
 import AccountPage from './pages/account';
+import BasketPage from './pages/basket';
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path='/' element = {<HomePage />} />
           <Route path='/products' element = {<ProductsPage />} />
+          <Route path='/basket' element = {<BasketPage />} />
           <Route path='/account' element = {<AccountPage />} />
         </Routes>
       </div>     

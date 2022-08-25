@@ -1,6 +1,6 @@
 import { api_endpoint } from "./index.js";
 
-//function to get all users
+//function to get all products
 export const getProducts = async () => {
   const response = await fetch(`${api_endpoint}/products`);
   const products = await response.json();
