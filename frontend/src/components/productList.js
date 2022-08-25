@@ -18,7 +18,7 @@ const ProductsList = () => {
         
     }, [])
 
-
+    //map out products with Product Component 
     const productsListed = products.map((product) => {
         return (
             <div>
@@ -31,13 +31,10 @@ const ProductsList = () => {
              </div>
         )
     })
-
-   
-
-
+    
+    //what is being returned from ProductsList
     return (
-        <div> 
-            <h1> Products </h1>
+        <div>             
             {productsListed}
         </div>
     )
