@@ -2,11 +2,39 @@ const express = require('express');
 const app = express()
 const cors = require('cors')
 const pool = require("./db.js")
+const session = require('express-session');
+const passport = require('passport');
+const findUserByUsername = require('./apiHelperFunctions.js');
+const findUserById = require('./apiHelperFunctions.js');
+const flash = require('express-flash')
+const cookieParser = require('cookie-parser');
+const initializePassport = require('./passport-config');
 
 
-//allows access to request body
+
+
+
+
+//MIDDLEWARE 
 app.use(express.json())
 app.use(cors())
+
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(cookieParser('secret'));
+app.use(passport.initialize());
+app.use(passport.session());
+initializePassport(passport, findUserByUsername,findUserById)
+
+
+
+
+
+
 
 
 //ROUTES

@@ -1,8 +1,9 @@
-import { api_endpoint } from "./index.js";
+let api_endpoint = "http://localhost:3000";
 
 
 
-//function to create a new user with a json body
+
+//function to register a new user with a json body
 export const addNewUser = async (newUsername, newFirst_name, newLast_name, newEmail, newPassword) => {
     console.log(newUsername, newFirst_name, newLast_name, newEmail, newPassword)
     const response = await fetch(`${api_endpoint}/users`, {
@@ -18,22 +19,28 @@ export const addNewUser = async (newUsername, newFirst_name, newLast_name, newEm
             'Content-Type': 'application/json'
         },
     })
-
     const newUser = await response.json()
     return newUser
-
-
 };
 
 
-//function to get a user by username and password
 
-
-
-
-
-
-export const logInUser = async (loginUsername, loginPassword) => {
-
-
+//login a user
+export const loginUser = async (loginUsername, loginPassword) => {
+    
+    const response = await fetch(`${api_endpoint}/users/login`, {
+        method: 'POST',
+        body: JSON.stringify({
+            username: loginUsername,
+            password: loginPassword
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    
+    const user = await response.json();
+    console.log(user);
+    return user
 };
+

@@ -21,8 +21,8 @@ export default function RegisterPage() {
         
         e.preventDefault();
 
-        const newUser = await addNewUser(newUsername, newFirstName, newLastName, newEmail, newPassword)
-        console.log(newUser)
+        const user = await addNewUser(newUsername, newFirstName, newLastName, newEmail, newPassword)
+        console.log(user)
         navigate('../login')
 
     }

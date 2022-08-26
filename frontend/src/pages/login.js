@@ -1,25 +1,31 @@
-import {Link} from 'react-router-dom';
-import { logInUser } from '../api/users';
+import {Link, useNavigate} from 'react-router-dom';
+import { loginUser } from '../api/users';
 import React, { useState } from "react";
 
 
 export default function LoginPage() {
 
-    //STATE FOR REGISTER COMPONENT
-    const [newUsername, setNewUsername] = useState("");    
-    const [newPassword, setNewPassword] = useState("");
+    //STATE FOR LOGIN COMPONENT
+    const [loginUsername, setLoginUsername] = useState("");    
+    const [loginPassword, setLoginPassword] = useState("");
 
 
+    let navigate = useNavigate();
 
-    //FUNCTIONS FOR REGISTER COMPONENT
+
+    //FUNCTIONS FOR LOGIN COMPONENT
     const onloginInUser = async (e) => {
+        
         e.preventDefault();
 
-        const loginUser = await logInUser(newUsername, newPassword)
+        const user = await loginUser(loginUsername, loginPassword)
+        
+        navigate('../account')
+
     }
 
 
-    //RENDER FOR REGISTER COMPONENT 
+    //RENDER FOR LOGIN COMPONENT 
     return (
         <>
             <h1> Login Page </h1>
@@ -34,9 +40,9 @@ export default function LoginPage() {
                     <input 
                         type='text'
                         id='username' 
-                        value={newUsername} 
+                        value={loginUsername} 
                         onChange={(e) => {
-                            setNewUsername(e.target.value)
+                            setLoginUsername(e.target.value)
                         }} 
                     />
 
@@ -44,9 +50,9 @@ export default function LoginPage() {
                     <input 
                         type='text'
                         id='password' 
-                        value={newPassword} 
+                        value={loginPassword} 
                         onChange={(e) => {
-                            setNewPassword(e.target.value)
+                            setLoginPassword(e.target.value)
                         }} 
                     />
 
