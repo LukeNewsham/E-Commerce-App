@@ -1,7 +1,9 @@
 //setting up database
 
 //creates variable to connect to pg pool function
-const Pool = require("pg").Pool;
+// const Pool = require("pg").Pool;
+import p from 'pg';
+const Pool = p.Pool;
 
 //uses pg pool function to crate a new pool connection to postgres with requested details
 const pool = new Pool({
@@ -13,4 +15,4 @@ const pool = new Pool({
 });
 
 //database can now be accessed by the pool variable across backend files
-module.exports = pool
+export default pool;

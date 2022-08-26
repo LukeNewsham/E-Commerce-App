@@ -4,7 +4,7 @@ let api_endpoint = "http://localhost:3000";
 
 
 //function to register a new user with a json body
-export const addNewUser = async (newUsername, newFirst_name, newLast_name, newEmail, newPassword) => {
+const addNewUser = async (newUsername, newFirst_name, newLast_name, newEmail, newPassword) => {
     console.log(newUsername, newFirst_name, newLast_name, newEmail, newPassword)
     const response = await fetch(`${api_endpoint}/users`, {
         method: 'POST',
@@ -26,9 +26,10 @@ export const addNewUser = async (newUsername, newFirst_name, newLast_name, newEm
 
 
 //login a user
-export const loginUser = async (loginUsername, loginPassword) => {
+const loginUser = async (loginUsername, loginPassword) => {
+    console.log(`loginUser function successfully passing in username: ${loginUsername} and password: ${loginPassword} `);
     
-    const response = await fetch(`${api_endpoint}/users/login`, {
+    const response = await fetch(`${api_endpoint}/login`, {
         method: 'POST',
         body: JSON.stringify({
             username: loginUsername,
@@ -44,3 +45,35 @@ export const loginUser = async (loginUsername, loginPassword) => {
     return user
 };
 
+
+
+
+
+const testfunction = async (username) => {
+    console.log('Accessed findUsername function');
+    const response = await fetch(`${api_endpoint}/users`);
+    const test = await response.json();
+    console.log(test);  
+    return username
+  };
+  
+  
+  //function to get user by username
+const findUserByUsername = async (username) => {
+    const response = await fetch(`${api_endpoint}/users/username/${username}`);
+    const user = await response.json();
+    console.log('worked')  
+    return user;
+};
+
+//function to get user by username
+const findUserById = async (id) => {
+    const response = await fetch(`${api_endpoint}/users/id/${id}`);
+    const user = await response.json();
+    console.log('worked')
+
+    return user;
+};
+
+
+export default {findUserById, testfunction, findUserByUsername, loginUser, addNewUser}

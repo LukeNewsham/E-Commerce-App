@@ -1,9 +1,16 @@
-const express = require('express');
-const router = express.Router()
-const pool = require('../db')
-const bcrypt = require('bcrypt');
+// const express = require('express');
+// const router = express.Router()
+// const pool = require('../db')
+// const bcrypt = require('bcrypt');
+// const passport = require('passport');
 
-const passport = require('passport');
+import express from 'express';
+const router = express.Router()
+import p from 'pg';
+const Pool = p.Pool;
+import bcrypt from 'bcrypt';
+
+
 
 
 //all start with /users
@@ -32,24 +39,6 @@ router.post('/', async (req, res) => {
         console.error(err.message);
     }
     
-});
-
-//LOGIN A USER
-//takes req.body.username and req.body.password and passes it into passport local strategy
-router.post('/login', (req, res, next) => {
-    // res.send(req.body)
-    
-    //FOR TOMORROW - NOT WORKING. WHEN ABOVE SENDS, PAGE SWITCHES. STUCK ON PASSPORT. 
-    passport.authenticate('local', (err,user,info) => {
-        if (err) throw err;
-        if (!user) res.send('No user');
-        else {
-            req.logIn(user, err => {
-                if (err) throw err;
-                res.send('Successfully authenticated!')
-            })
-        }
-    })
 });
 
 
@@ -87,6 +76,6 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-module.exports = router
+export default router
 
 

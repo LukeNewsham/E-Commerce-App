@@ -10,6 +10,8 @@ export const getProducts = async () => {
 };
 
 
+
+
 //function to get product categories
 
 
