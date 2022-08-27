@@ -1,5 +1,5 @@
 import {Link, useNavigate} from 'react-router-dom';
-import addNewUser from '../api/users';
+import {addNewUser} from '../api/users';
 import React, { useState } from "react";
 
 

@@ -1,14 +1,14 @@
-// const express = require('express');
-// const router = express.Router()
-// const pool = require('../db')
-// const bcrypt = require('bcrypt');
-// const passport = require('passport');
-
-import express from 'express';
+const express = require('express');
 const router = express.Router()
-import p from 'pg';
-const Pool = p.Pool;
-import bcrypt from 'bcrypt';
+const pool = require('../db')
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+
+// import express from 'express';
+// const router = express.Router()
+// import p from 'pg';
+// const Pool = p.Pool;
+// import bcrypt from 'bcrypt';
 
 
 
@@ -76,6 +76,7 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-export default router
+// export default router
+module.exports = router
 
 

@@ -1,23 +1,23 @@
-import express from 'express';
-const app = express()
-import cors from 'cors';
-import pool from './db.js';
-import session from 'express-session';
-import passport from 'passport';
-import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
-
-
-
-// const express = require('express');
+// import express from 'express';
 // const app = express()
-// const cors = require('cors')
-// const pool = require("./db.js")
-// const session = require('express-session');
-// const passport = require('passport');
-// const flash = require('express-flash')
-// const cookieParser = require('cookie-parser');
-// const bodyParser = require('body-parser')
+// import cors from 'cors';
+// import pool from './db.js';
+// import session from 'express-session';
+// import passport from 'passport';
+// import cookieParser from 'cookie-parser';
+// import bodyParser from 'body-parser';
+
+
+
+const express = require('express');
+const app = express()
+const cors = require('cors')
+const pool = require("./db.js")
+const session = require('express-session');
+const passport = require('passport');
+const flash = require('express-flash')
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser')
 
 
 
@@ -40,9 +40,9 @@ app.use(session({
 app.use(cookieParser('secret'));
 app.use(passport.initialize());
 app.use(passport.session());
-// require('./passport-config')(passport);
-import initialize from './passport-config.js';
-initialize(passport)
+require('./passport-config')(passport);
+// import initialize from './passport-config.js';
+// initialize(passport)
 
 
 
@@ -50,21 +50,37 @@ initialize(passport)
 
 //LOGIN A USER
 //takes req.body.username and req.body.password and passes it into passport local strategy
-app.post('/login', (req, res, next) => {
-    
-    res.send(req.body);    
-    
-    passport.authenticate("local", (err,user) => {
+app.post('/login', (req, res, next) => {    
+    passport.authenticate("local", (err,user) => {        
         if (err) throw err;
-        if (!user) res.send('No user authenticated');
+        if (!user) return res.send(false);
         else {
-            req.logIn(user, err => {
+             req.logIn(user, err => {
                 if (err) throw err;
-                res.send('Successfully Authenticated!')
+                console.log(`Passport local authenticated sending req.user: `)
+                console.log(req.user)
+                return res.send(req.user)
             })
         } 
+        
     })(req, res, next)
 });
+
+
+
+
+
+
+
+// app.get('/userData', (req, res) => {
+//     if (!req.user) {
+//         res.send(false)
+//     } else {
+//         res.send(req.user)   
+//     }
+       
+// });
+    
 
 
 

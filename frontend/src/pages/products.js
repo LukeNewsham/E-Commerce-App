@@ -1,9 +1,9 @@
-import ProductsList from '../components/productList.js';
+import ProductsList from '../components/productListComponent.js';
 
 export default function ProductsPage() {
     return (
         <>
-            <h1> Products Page </h1>
+            <h1 class='pageTitle'> Products </h1>
             <ProductsList />
         </>
     )

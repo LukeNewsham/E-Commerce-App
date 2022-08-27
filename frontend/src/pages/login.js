@@ -1,6 +1,7 @@
 import {Link, useNavigate} from 'react-router-dom';
-import loginUser from '../api/users';
+import {loginUser} from '../api/users';
 import React, { useState } from "react";
+import { getPassportData } from '../api/users';
 
 
 export default function LoginPage() {
@@ -8,6 +9,7 @@ export default function LoginPage() {
     //STATE FOR LOGIN COMPONENT
     const [loginUsername, setLoginUsername] = useState("");    
     const [loginPassword, setLoginPassword] = useState("");
+    const [userData, setUserData] = useState("");
 
 
     let navigate = useNavigate();
@@ -18,9 +20,14 @@ export default function LoginPage() {
         
         e.preventDefault();
 
-        const user = await loginUser(loginUsername, loginPassword)
-        
-        navigate('../account')
+        const userData = await loginUser(loginUsername, loginPassword);  
+        console.log(userData)         
+        //if user includes req.data and not false
+        if (userData){   
+            setUserData(userData);
+            // navigate('../account')
+        }
+       
 
     }
 

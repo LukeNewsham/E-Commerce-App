@@ -1,16 +1,10 @@
-// const express = require('express');
-// const router = express.Router()
-// const pool = require('../db')
-
-import express from 'express';
+const express = require('express');
 const router = express.Router()
-import p from 'pg';
-const Pool = p.Pool;
-import bcrypt from 'bcrypt';
+const pool = require('../db')
+
 
 
 //all start with /products
-//used to get products by id or category 
 
 
 // GET ALL PRODUCTS 
@@ -87,5 +81,6 @@ router.delete('/:id', async (req, res) => {
 
 
 
-export default router
+// export default router
+module.exports = router
 

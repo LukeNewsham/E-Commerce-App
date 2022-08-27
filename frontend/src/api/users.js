@@ -2,9 +2,8 @@ let api_endpoint = "http://localhost:3000";
 
 
 
-
 //function to register a new user with a json body
-const addNewUser = async (newUsername, newFirst_name, newLast_name, newEmail, newPassword) => {
+export const addNewUser = async (newUsername, newFirst_name, newLast_name, newEmail, newPassword) => {
     console.log(newUsername, newFirst_name, newLast_name, newEmail, newPassword)
     const response = await fetch(`${api_endpoint}/users`, {
         method: 'POST',
@@ -26,7 +25,7 @@ const addNewUser = async (newUsername, newFirst_name, newLast_name, newEmail, ne
 
 
 //login a user
-const loginUser = async (loginUsername, loginPassword) => {
+export const loginUser = async (loginUsername, loginPassword) => {
     console.log(`loginUser function successfully passing in username: ${loginUsername} and password: ${loginPassword} `);
     
     const response = await fetch(`${api_endpoint}/login`, {
@@ -39,41 +38,27 @@ const loginUser = async (loginUsername, loginPassword) => {
             'Content-Type': 'application/json'
         },
     })
+    const user = await response.json();
+    console.log('Received login data: ')
+    console.log(user)
+
+    if (user) {
+        console.log('Authenticated User')
+        return user
+    } else {
+        console.log('Failed to authenticated User')
+        return false
+    }
     
-    const user = await response.json();
-    console.log(user);
-    return user
 };
 
 
-
-
-
-const testfunction = async (username) => {
-    console.log('Accessed findUsername function');
-    const response = await fetch(`${api_endpoint}/users`);
-    const test = await response.json();
-    console.log(test);  
-    return username
+//function to get passport data
+export const getPassportData = async () => {
+const response = await fetch(`${api_endpoint}/userData`);
+  const userData = await response.json();
+  console.log(userData);
+  return userData;
   };
-  
-  
-  //function to get user by username
-const findUserByUsername = async (username) => {
-    const response = await fetch(`${api_endpoint}/users/username/${username}`);
-    const user = await response.json();
-    console.log('worked')  
-    return user;
-};
-
-//function to get user by username
-const findUserById = async (id) => {
-    const response = await fetch(`${api_endpoint}/users/id/${id}`);
-    const user = await response.json();
-    console.log('worked')
-
-    return user;
-};
 
 
-export default {findUserById, testfunction, findUserByUsername, loginUser, addNewUser}

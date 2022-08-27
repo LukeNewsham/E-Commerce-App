@@ -1,59 +1,59 @@
-// const passport = require("passport");
-// const LocalStrategy = require('passport-local').Strategy;
-// const bcrypt = require("bcrypt");
-// const findUserByUsername = require('./apiHelperFunctions.js');
-// const findUserById = require('./apiHelperFunctions.js');
-// const testfunction = require('../frontend/src/api/users');
-
-
-import ls from 'passport-local';
-const LocalStrategy = ls.Strategy;
-import bcrypt from 'bcrypt';
-import passport from 'passport';
-import findUserByUsername from '../frontend/src/api/users.js';
-import findUserById from '../frontend/src/api/users.js';
-import testfunction from '../frontend/src/api/users.js';
+const passport = require("passport");
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require("bcrypt");
+const findUserByUsername = require('./apiHelperFunctionsTEST.js');
+const findUserById = require('./apiHelperFunctions.js');
+// const testfunction = require('./apiHelperFunctions.js');
 
 
 
 
-const initialize = function(passport) {
+
+
+module.exports = function(passport) {
 
     //username is req.body.username etc.
     passport.use(
-        new LocalStrategy((username, password, done) => {
+        new LocalStrategy( async (username, password, done) => {
+            
             //logs in terminal not browser
             console.log(`Username: ${username} Password: ${password}`)
 
             //find user in database by username            
-            // const user = findUserByUsername(username);
-            const user = testfunction(username)
+            const user = await findUserByUsername(username);           
 
             console.log(user)
 
             if (!user) {
+                console.log('No user')
                 return done(null, false)
             }
 
-            bcryptCompared = bcrypt.compare(password, user.password);
+            console.log('User successfully found. Moving onto comparing passwords...')
+            bcryptCompared = await bcrypt.compare(password, user.password);
+            console.log(`Passwords compared: ${bcryptCompared}`)
             if (bcryptCompared === true) {
+                console.log(`Passwords match! Sending Done`)
                 return done(null, user)
             } else {
+                console.log(`Passwords do not match. Sending Done`)
                 return done(null, false)
+                
             }            
         })
     );
     
     passport.serializeUser((user, done) => {
-        done(null, user.id)
+        console.log(`Serializing user with ID: ${user.id}`)
+        return done(null, user.id)
     });
 
     passport.deserializeUser((id, done) => { 
-        done(null, findUserById(id))
+        console.log('Deserializing user...')
+        return done(null, findUserById(id))
     });
 }
 
-export default initialize
 
 
 
