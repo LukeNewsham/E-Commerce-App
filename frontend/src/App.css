@@ -1,32 +1,37 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Calibri';
+    font-family: 'Roboto';
+    color: white;
+    /* border: white 1px solid; */
+    border: rgba(255, 255, 255, 0) 1px solid;
   }
 
-  h1 {
-    padding: 15px;
-    font-size: 20px;
-  }
-  
-  h2 {
-    font-size: 20px;
-  }
+h1 {
+  padding: 1rem;
+  font-size: 1.5rem;
+}
 
+h2 {
+  font-size: 1rem;
+}
 
+body {
+  background-color: rgb(22, 22, 22);
+}
   
 .nav {
     position: fixed;
     top: 0rem;
     z-index: 2;
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color:  rgb(22, 22, 22);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: stretch; 
     height: auto;
-    border-bottom: 1.5px solid lightgrey;
+    
   }
 
   
@@ -43,14 +48,15 @@
     height: 100%;
     display: flex;
     align-items: center;    
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: 0 2rem;
-    color: rgb(115, 173, 204);
+    color: rgb(134, 134, 134);
   }
 
 
 .nav a:hover {
-    color: darkblue
+    color: rgb(255, 255, 255);
+    border-bottom: solid orange 1px;
 }
   
 .nav a:active {
@@ -61,21 +67,68 @@
     font-size: 2rem;
     height: auto;
     font-weight: bolder;
+    color: white;
   }
 
 .mainContainer {
-    padding: 2rem;
+    padding: 0 5rem 0 5rem;
     text-align: center;
     align-items: center;
     justify-content: center;
+    margin: 0rem;
     margin-top: 10rem;
+    
+}
+
+
+.mainContainer h1 { 
+  text-shadow: 0.3rem 0.5rem rgb(75, 75, 75);
+}
+
+.bannerImage {  
+  width: 100%;
+  object-fit: cover;
+}
+
+.pageTitle {
+  font-size: 5rem;
+  text-align: left;
+}
+
+
+#productListComponent {  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#productComponent {  
+  background-color: ;
+  font-size: 0.8rem;
+  text-decoration: none;
+  margin: 1rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 0.1rem solid orange;
+  width: 15%;
+  min-width: 8rem;
+  height: 12rem;
+}
+
+#productComponent:hover {
+  box-shadow: 0rem 0rem 1rem 0.2rem rgb(65, 65, 65);
+  border-color: rgb(198, 201, 39);
+}
+
+#loginPage {
+  margin-left: 3rem;
 }
 
 
 
 
-
-@media only screen and (max-width: 1000px) { 
+@media only screen and (max-width: 700px) { 
 
 h2 {
     font-size: 1rem;
@@ -100,15 +153,34 @@ h2 {
     height: 100%;
     display: flex;
     align-items: center;    
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 0.5rem 1rem;
 }
 
 
+.pageTitle {
+  font-size: 2rem;
+  text-align: center;
+}
+
 
 .mainContainer {
-    padding: 1.5rem;
+    padding: 0 0rem 0 0rem;
     
+}
+
+
+
+#productListComponent {  
+  justify-content: center;
+}
+
+#productComponent { 
+  font-size: 0.8rem;  
+  width: 100%;
+  max-width: 15rem;
+  min-width: 8rem;
+  
 }
 
 }

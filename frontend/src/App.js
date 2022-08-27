@@ -4,7 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import React, {useState, useEffect} from 'react';
 
 //Pages
-import HomePage from './pages/home';
+import HomePage from './pages/home/home';
 import ProductsPage from './pages/products';
 import AccountPage from './pages/account';
 import BasketPage from './pages/basket';

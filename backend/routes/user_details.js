@@ -2,6 +2,12 @@ const express = require('express');
 const router = express.Router()
 const pool = require('../db')
 
+// import express from 'express';
+// const router = express.Router()
+// import p from 'pg';
+// const Pool = p.Pool;
+// import bcrypt from 'bcrypt';
+
 //all start with /user_details
 
 //GET ALL USER_DETAILS
@@ -52,6 +58,7 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-module.exports = router
+// export default router
+module.exports = router 
 
 

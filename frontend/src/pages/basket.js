@@ -1,7 +1,7 @@
 export default function BasketPage() {
     return (
         <>
-            <h1> Basket Page </h1>
+            <h1 class='pageTitle'> Basket  </h1>
             
         </>
     )

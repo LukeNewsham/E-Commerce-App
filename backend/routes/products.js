@@ -3,8 +3,8 @@ const router = express.Router()
 const pool = require('../db')
 
 
+
 //all start with /products
-//used to get products by id or category 
 
 
 // GET ALL PRODUCTS 
@@ -81,6 +81,6 @@ router.delete('/:id', async (req, res) => {
 
 
 
+// export default router
 module.exports = router
-
 

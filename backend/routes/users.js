@@ -1,7 +1,16 @@
 const express = require('express');
 const router = express.Router()
 const pool = require('../db')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+
+// import express from 'express';
+// const router = express.Router()
+// import p from 'pg';
+// const Pool = p.Pool;
+// import bcrypt from 'bcrypt';
+
+
 
 
 //all start with /users
@@ -16,32 +25,40 @@ router.get('/', async (req, res) => {
     }
 })
 
-//CREATE A USER 
+//REGISTER A USER  
 router.post('/', async (req, res) => {
-    const {username, first_name, last_name, email, password} = req.body;  
-    
+    const {username, first_name, last_name, email, password} = req.body;      
     try {
         const hashedPassword = await bcrypt.hash(password, 10)
         const addUser = await pool.query(
             'INSERT INTO users (username, first_name, last_name, email, password) VALUES ($1, $2, $3, $4, $5)', 
             [username, first_name, last_name, email, hashedPassword],
-        );   
-          
-        res.json(`User ${username}, was successfully added`) 
-        
-          
+        );             
+        res.json(`User ${username}, was successfully added`)  
     } catch (err) {
         console.error(err.message);
     }
     
 });
 
+
+//GET USER FROM USERNAME
+router.get('/username/:username', async (req, res) => {
+    const {username} = req.params;
+    try {
+        const user = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+        res.json(user.rows)
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
 //GET USER FROM ID
-router.get('/:id', async (req, res) => {
+router.get('/id/:id', async (req, res) => {
     const {id} = req.params;
     try {
-        const userId = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
-        res.json(userId.rows)
+        const user = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+        res.json(user.rows)
     } catch (err) {
         console.error(err.message);
     }
@@ -52,13 +69,14 @@ router.get('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const {id} = req.params;
     try {
-        const userId = await pool.query('DELETE FROM users WHERE id = $1', [id]);
-        res.json(userId.rows)
+        const user = await pool.query('DELETE FROM users WHERE id = $1', [id]);
+        res.json(user.rows)
     } catch (err) {
         console.error(err.message);
     }
 })
 
+// export default router
 module.exports = router
 
 
