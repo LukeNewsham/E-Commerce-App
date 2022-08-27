@@ -25,7 +25,7 @@ export default function LoginPage() {
         //if user includes req.data and not false
         if (userData){   
             setUserData(userData);
-            // navigate('../account')
+            navigate('../account')
         }
        
 

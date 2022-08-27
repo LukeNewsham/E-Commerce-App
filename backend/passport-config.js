@@ -3,15 +3,9 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require("bcrypt");
 const findUserByUsername = require('./apiHelperFunctionsTEST.js');
 const findUserById = require('./apiHelperFunctions.js');
-// const testfunction = require('./apiHelperFunctions.js');
-
-
-
-
 
 
 module.exports = function(passport) {
-
     //username is req.body.username etc.
     passport.use(
         new LocalStrategy( async (username, password, done) => {
@@ -48,10 +42,11 @@ module.exports = function(passport) {
         return done(null, user.id)
     });
 
-    passport.deserializeUser((id, done) => { 
-        console.log('Deserializing user...')
-        return done(null, findUserById(id))
-    });
+    //Do not need as logging in manually 
+    // passport.deserializeUser((id, done) => { 
+    //     console.log('Deserializing user...')
+    //     return done(null, findUserById(id))
+    // });
 }
 
 
