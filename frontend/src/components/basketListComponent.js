@@ -6,47 +6,37 @@ import Product from './productComponent.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBasket } from '../redux/basketSlice.js';
 
-const ProductsList = () => {
-    //state for books data
-    const basketItems = useSelector(state => state.basket.value)
+const BasketList = () => {
+   
     const dispatch = useDispatch();
+    const basketItems = useSelector(state => state.basket.value)
+    const user_id = useSelector(state => state.user.value.id)
 
-    //fetch data from API if userData state is true
+    //fetch data from API and adds to basket state
     useEffect(() => {
         async function fetchData() {
-            const basketData = await getBasket();
+            console.log('...fetching basket')
+            const basketData = await getBasket(user_id);
             dispatch(addBasket(basketData))
-
         }
-
-        fetchData()
-        
+        fetchData()        
     }, [])
 
-    //map out products with Product Component 
-    // const productsListed = products.map((product) =>       
-    //             <Product 
-    //                 key = {product.id}
-    //                 name = {product.name}
-    //                 description = {product.description}
-    //                 price = {product.price}
-    //             />     
-    // )
-    
+ 
     //what is being returned from ProductsList
     return (
-        <div id='productListComponent'>             
-            {products.map((product) =>       
+        <div className='listComponent'>             
+            {basketItems.map((basketItems) =>       
                 <Product 
-                    key = {product.id}
-                    name = {product.name}
-                    description = {product.description}
-                    price = {product.price}
-                    categoryId = {product.category_id}
+                    key = {basketItems.id}
+                    name = {basketItems.name}
+                    description = {basketItems.description}
+                    price = {basketItems.price}
+                    categoryId = {basketItems.category_id}
                 />     
             )}
         </div>
     )
 }
 
-export default ProductsList
+export default BasketList

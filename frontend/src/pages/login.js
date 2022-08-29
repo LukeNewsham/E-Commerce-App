@@ -3,16 +3,20 @@ import {loginUser} from '../api/users';
 import React, { useState } from "react";
 import { getPassportData } from '../api/users';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser } from '../redux/userSlice.js';
+
 
 export default function LoginPage() {
+
+    let navigate = useNavigate();
+    const dispatch = useDispatch();
 
     //STATE FOR LOGIN COMPONENT
     const [loginUsername, setLoginUsername] = useState("");    
     const [loginPassword, setLoginPassword] = useState("");
     const [userData, setUserData] = useState("");
-
-
-    let navigate = useNavigate();
+    
 
 
     //FUNCTIONS FOR LOGIN COMPONENT
@@ -25,6 +29,7 @@ export default function LoginPage() {
         //if user includes req.data and not false
         if (userData){   
             setUserData(userData);
+            dispatch(addUser(userData))
             navigate('../account')
         }
        

@@ -5,6 +5,8 @@ import newFirstNameReducer from './registerSlices/newFirstNameSlice';
 import newLastNameReducer from './registerSlices/newLastNameSlice';
 import newEmailReducer from './registerSlices/newEmailSlice';
 import newPasswordReducer from './registerSlices/newPasswordSlice';
+import basketReducer from './basketSlice.js'
+import userReducer from './userSlice.js'
 
 export default configureStore({
     reducer: {
@@ -14,5 +16,7 @@ export default configureStore({
         newLastName: newLastNameReducer,
         newEmail: newEmailReducer,
         newPassword: newPasswordReducer,
+        basket: basketReducer,
+        user: userReducer
     }
 })

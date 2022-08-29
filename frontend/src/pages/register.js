@@ -1,12 +1,14 @@
 import {Link, useNavigate} from 'react-router-dom';
 import {addNewUser} from '../api/users';
 import React, { useState } from "react";
+
 import { useDispatch, useSelector } from 'react-redux';
 import { updateNewUsername } from '../redux/registerSlices/newUsernameSlice.js'
 import { updateNewFirstName } from '../redux/registerSlices/newFirstNameSlice.js'
 import { updateNewLastName } from '../redux/registerSlices/newLastNameSlice.js'
 import { updateNewEmail } from '../redux/registerSlices/newEmailSlice.js'
 import { updateNewPassword } from '../redux/registerSlices/newPasswordSlice.js'
+
 
 
 
@@ -29,7 +31,7 @@ export default function RegisterPage() {
         e.preventDefault();
 
         const user = await addNewUser(newUsername, newFirstName, newLastName, newEmail, newPassword)
-        console.log(user)
+        console.log(user)        
         navigate('../login')
 
     }

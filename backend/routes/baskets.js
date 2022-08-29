@@ -5,11 +5,11 @@ const pool = require('../db')
 
 //all start with /baskets
 
-//GET ALL BASKET ITEMS BY USER ID
+//GET ALL BASKET ITEMS WITH DETAILS BY USER ID
 router.get('/user/:id', async (req, res) => { 
     const {id} = req.params;   
     try {
-        allUserBasketItems = await pool.query('SELECT * FROM basket WHERE user_id = $1', [id]);  
+        allUserBasketItems = await pool.query('SELECT * FROM basket LEFT JOIN products ON basket.product_id = products.id WHERE user_id = $1', [id]);  
         res.json(allUserBasketItems.rows)  
     } catch (err) {
         console.error(err.message);

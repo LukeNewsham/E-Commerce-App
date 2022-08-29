@@ -98,7 +98,7 @@ body {
 }
 
 
-#productListComponent {  
+.listComponent {  
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -123,12 +123,12 @@ body {
   border-color: rgb(198, 201, 39);
 }
 
-#loginPage {
+#loginOrAccount {
   margin-left: 3rem;
   margin-right: 1rem;
 }
 
-#loginPage:hover {
+#loginOrAccount:hover {
   border-bottom: 1px yellow solid;
 }
 

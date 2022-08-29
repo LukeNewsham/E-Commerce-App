@@ -17,26 +17,14 @@ const ProductsList = () => {
             const productsData = await getProducts();
             // setProducts(productsData) 
             dispatch(addProducts(productsData))
-
         }
-
-        fetchData()
-        
+        fetchData()        
     }, [])
 
-    //map out products with Product Component 
-    // const productsListed = products.map((product) =>       
-    //             <Product 
-    //                 key = {product.id}
-    //                 name = {product.name}
-    //                 description = {product.description}
-    //                 price = {product.price}
-    //             />     
-    // )
     
     //what is being returned from ProductsList
     return (
-        <div id='productListComponent'>             
+        <div className='listComponent'>             
             {products.map((product) =>       
                 <Product 
                     key = {product.id}
