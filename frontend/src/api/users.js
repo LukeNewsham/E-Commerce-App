@@ -1,4 +1,4 @@
-let api_endpoint = "http://localhost:3000";
+import { api_endpoint } from "./index.js";
 
 
 

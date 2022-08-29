@@ -1,22 +1,21 @@
-//product page -> productListComponent -> productComponent
+//basket page -> basketListComponent -> basketComponent
 
-import React, {useState, useEffect} from 'react';
-import {getProducts} from '../api/products.js';
+import React, {useEffect} from 'react';
+import { getBasket } from '../api/basket.js';
 import Product from './productComponent.js';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProducts } from '../redux/productsSlice.js';
+import { addBasket } from '../redux/basketSlice.js';
 
 const ProductsList = () => {
-    //state for product data
-    const products = useSelector(state => state.products.value)
+    //state for books data
+    const basketItems = useSelector(state => state.basket.value)
     const dispatch = useDispatch();
 
-    //fetch data from API 
+    //fetch data from API if userData state is true
     useEffect(() => {
         async function fetchData() {
-            const productsData = await getProducts();
-            // setProducts(productsData) 
-            dispatch(addProducts(productsData))
+            const basketData = await getBasket();
+            dispatch(addBasket(basketData))
 
         }
 
