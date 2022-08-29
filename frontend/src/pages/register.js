@@ -3,11 +3,7 @@ import {addNewUser} from '../api/users';
 import React, { useState } from "react";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { updateNewUsername } from '../redux/registerSlices/newUsernameSlice.js'
-import { updateNewFirstName } from '../redux/registerSlices/newFirstNameSlice.js'
-import { updateNewLastName } from '../redux/registerSlices/newLastNameSlice.js'
-import { updateNewEmail } from '../redux/registerSlices/newEmailSlice.js'
-import { updateNewPassword } from '../redux/registerSlices/newPasswordSlice.js'
+import {updateNewUsername, updateNewFirstName, updateNewLastName, updateNewEmail, updateNewPassword} from '../redux/registerSlice.js'
 
 
 
@@ -16,11 +12,11 @@ export default function RegisterPage() {
 
     let navigate = useNavigate();
     const dispatch = useDispatch();
-    const newUsername = useSelector(state => state.newUsername.value);
-    const newFirstName = useSelector(state => state.newFirstName.value);
-    const newLastName = useSelector(state => state.newLastName.value);
-    const newEmail = useSelector(state => state.newEmail.value);
-    const newPassword = useSelector(state => state.newPassword.value);
+    const newUsername = useSelector(state => state.registerData.newUsername);
+    const newFirstName = useSelector(state => state.registerData.newFirstName);
+    const newLastName = useSelector(state => state.registerData.newLastName);
+    const newEmail = useSelector(state => state.registerData.newEmail);
+    const newPassword = useSelector(state => state.registerData.newPassword);
     
 
 
@@ -39,16 +35,16 @@ export default function RegisterPage() {
 
     //RENDER FOR REGISTER COMPONENT 
     return (
-        <>
-            <h1> Register Page </h1>
+        <div className='form'>
+            <h1> Sign Up </h1>
 
 
-            <div id='addNewUser'> 
+            <div> 
                 <form onSubmit={onAddNewUser}>
                     
                      {/* Each input changes its corresponding state on change */}
 
-                    <label> Username: </label> 
+                    <label > Username: </label> 
                     <input 
                         type='text'
                         id='username' 
@@ -57,8 +53,8 @@ export default function RegisterPage() {
                             dispatch(updateNewUsername(e.target.value))
                         }} 
                     />
-
-                    <label> First Name: </label> 
+                    <br/>
+                    <label> First Name </label> 
                     <input 
                         type='text'
                         id='firstName' 
@@ -67,7 +63,7 @@ export default function RegisterPage() {
                             dispatch(updateNewFirstName(e.target.value))
                         }} 
                     />
-
+                    <br/>
                     <label> Last Name: </label> 
                     <input 
                         type='text'
@@ -77,7 +73,7 @@ export default function RegisterPage() {
                             dispatch(updateNewLastName(e.target.value))
                         }} 
                     />
-
+                    <br/>
                     <label> Email: </label> 
                     <input 
                         type='text'
@@ -87,7 +83,7 @@ export default function RegisterPage() {
                             dispatch(updateNewEmail(e.target.value))
                         }} 
                     />
-
+                    <br/>
                     <label> Password: </label> 
                     <input 
                         type='text'
@@ -97,16 +93,21 @@ export default function RegisterPage() {
                             dispatch(updateNewPassword(e.target.value))
                         }} 
                     />
-
-                    <button type='submit'> Register! </button> 
+                    <br/>
+                    <button type='submit' className='submit'> Sign Up </button> 
+                    <br/>
+                    <button> 
+                        <Link to='/login'> Already have an account? Log in </Link>
+                    </button>
+                    
                 </form>
+
+                
             </div> 
 
-            <button> 
-                <Link to='/login'> or login </Link>
-            </button>
+            
                 
            
-        </>
+        </div>
     )
 }

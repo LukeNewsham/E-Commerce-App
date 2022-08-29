@@ -28,7 +28,6 @@ export default function LoginPage() {
         console.log(userData)         
         //if user includes req.data and not false
         if (userData){   
-            setUserData(userData);
             dispatch(addUser(userData))
             navigate('../account')
         }
@@ -39,11 +38,11 @@ export default function LoginPage() {
 
     //RENDER FOR LOGIN COMPONENT 
     return (
-        <>
-            <h1> Login Page </h1>
+        <div className='form'>
+            <h1> Log In </h1>
 
 
-            <div id='logInUser'> 
+            <div > 
                 <form onSubmit={onloginInUser}>
                     
                      {/* Each input changes its corresponding state on change */}
@@ -57,7 +56,7 @@ export default function LoginPage() {
                             setLoginUsername(e.target.value)
                         }} 
                     />
-
+                    <br/>
                     <label> Password: </label> 
                     <input 
                         type='text'
@@ -67,16 +66,19 @@ export default function LoginPage() {
                             setLoginPassword(e.target.value)
                         }} 
                     />
+                    <br/>
 
-                    <button type='submit'> Login </button> 
+                    <button type='submit' className='submit'> Login </button> 
+                    <br></br>
+                    <button> 
+                        <Link to='/register'> or sign up for free </Link>
+                    </button>
                 </form>
             </div> 
 
-            <button> 
-                <Link to='/register'> or register </Link>
-            </button>
+            
                 
            
-        </>
+        </div>
     )
 }
