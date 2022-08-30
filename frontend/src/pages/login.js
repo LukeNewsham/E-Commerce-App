@@ -1,9 +1,11 @@
 import {Link, useNavigate} from 'react-router-dom';
 import {loginUser} from '../api/users';
-import React, { useState } from "react";
-import { getPassportData } from '../api/users';
 
+
+import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import {updateUsername, updatePassword, updateConfirmPassword} from '../redux/loginSlice.js'
+import FormInput from '../components/formInputComponent';
 import { addUser } from '../redux/userSlice.js';
 
 
@@ -11,11 +13,48 @@ export default function LoginPage() {
 
     let navigate = useNavigate();
     const dispatch = useDispatch();
+    const username = useSelector(state => state.loginData.username);
+    const password = useSelector(state => state.loginData.password);
+    const confirmPassword = useSelector(state => state.loginData.confirmPassword);
 
-    //STATE FOR LOGIN COMPONENT
-    const [loginUsername, setLoginUsername] = useState("");    
-    const [loginPassword, setLoginPassword] = useState("");
-    const [userData, setUserData] = useState("");
+
+
+    //INPUT DATA 
+
+    const inputs = [
+        {
+            type:'text',
+            id:'username',
+            placeholder:'Username',
+            value:username,
+            pattern:'^[A-Za-z0-9]{3,16}$',          
+            onChange:(e) => {
+                dispatch(updateUsername(e.target.value))
+            },
+            errorMessage: 'Username should be 3-16 characters long and should not include any special characters'
+        },
+        {
+            type:'password',
+            id:'password',
+            placeholder:'Password',
+            pattern:'^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$',       
+            onChange:(e) => {
+                dispatch(updatePassword(e.target.value))
+            },
+            errorMessage: 'Password should be 8-20 charaters and should include at least one letter, one number and one special letter'   
+        },
+        {
+            type:'password',
+            id:'confirmPassword',
+            placeholder:'Confirm Password', 
+            pattern:password,       
+            onChange:(e) => {
+                dispatch(updateConfirmPassword(e.target.value))
+            },
+            errorMessage: 'Passwords should match'   
+        }
+    ]
+    
     
 
 
@@ -24,7 +63,7 @@ export default function LoginPage() {
         
         e.preventDefault();
 
-        const userData = await loginUser(loginUsername, loginPassword);  
+        const userData = await loginUser(username, password);  
         console.log(userData)         
         //if user includes req.data and not false
         if (userData){   
@@ -45,28 +84,9 @@ export default function LoginPage() {
             <div > 
                 <form onSubmit={onloginInUser}>
                     
-                     {/* Each input changes its corresponding state on change */}
-
-                    <label> Username: </label> 
-                    <input 
-                        type='text'
-                        id='username' 
-                        value={loginUsername} 
-                        onChange={(e) => {
-                            setLoginUsername(e.target.value)
-                        }} 
-                    />
-                    <br/>
-                    <label> Password: </label> 
-                    <input 
-                        type='text'
-                        id='password' 
-                        value={loginPassword} 
-                        onChange={(e) => {
-                            setLoginPassword(e.target.value)
-                        }} 
-                    />
-                    <br/>
+                    {inputs.map((input) => (
+                        <FormInput key={input.id} type={input.type} placeholder={input.placeholder} value={input.value} pattern={input.pattern} onChange={input.onChange} required errorMessage={input.errorMessage}/>
+                    ))}   
 
                     <button type='submit' className='submit'> Login </button> 
                     <br></br>

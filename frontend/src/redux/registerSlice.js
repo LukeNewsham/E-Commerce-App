@@ -6,8 +6,10 @@ export const registerData = createSlice({
         newUsername: '',
         newFirstName: '',
         newLastName: '',
+        newDOB: '',
         newEmail: '',
         newPassword: '',
+        newConfirmPassword: ''
     },
     reducers: {
         updateNewUsername: (state, action) => {
@@ -22,14 +24,20 @@ export const registerData = createSlice({
         updateNewEmail: (state, action) => {
             state.newEmail = action.payload
         },
+        updateNewDOB: (state, action) => {
+            state.newDOB = action.payload
+        },
         updateNewPassword: (state, action) => {
             state.newPassword = action.payload
         },
+        updateNewConfirmPassword: (state, action) => {
+            state.newConfirmPassword = action.payload
+        }
     }
 });
 
 //sets all actions into variables
-export const {updateNewUsername, updateNewFirstName, updateNewLastName, updateNewEmail, updateNewPassword} = registerData.actions;
+export const {updateNewUsername, updateNewFirstName, updateNewLastName, updateNewEmail, updateNewDOB, updateNewPassword, updateNewConfirmPassword} = registerData.actions;
 
 //sets all reducers into variables
 export default registerData.reducer;

@@ -25,9 +25,10 @@ router.get('/', async (req, res) => {
     }
 })
 
-//REGISTER A USER  
+//REGISTER A NEW USER  
 router.post('/', async (req, res) => {
-    const {username, first_name, last_name, email, password} = req.body;      
+    const {username, first_name, last_name, email, password} = req.body; 
+         
     try {
         const hashedPassword = await bcrypt.hash(password, 10)
         const addUser = await pool.query(
