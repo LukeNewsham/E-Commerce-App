@@ -1,8 +1,8 @@
 const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require("bcrypt");
-const findUserByUsername = require('./apiHelperFunctionsTEST.js');
-const findUserById = require('./apiHelperFunctions.js');
+const findUserByUsername = require('./passportHelperFunctions.js');
+const findUserById = require('./passportHelperFunctions.js');
 
 
 module.exports = function(passport) {
