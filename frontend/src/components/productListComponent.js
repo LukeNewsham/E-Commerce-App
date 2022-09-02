@@ -27,6 +27,7 @@ const ProductsList = () => {
         <div className='listComponent'>             
             {products.map((product) =>       
                 <Product 
+                    id = {product.id}
                     key = {product.id}
                     name = {product.name}
                     description = {product.description}

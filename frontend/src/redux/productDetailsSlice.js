@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const basketSlice = createSlice({
-    name: 'baseket',
+export const productDetailsSlice = createSlice({
+    name: 'productDetails',
     initialState: {
         value: 'noData'
     },
     reducers: {
-        addBasket: (state, action) => {
+        updateProductDetails: (state, action) => {
             state.value = action.payload
         }
     }
 });
 
 //sets all actions into variables
-export const {addBasket} = basketSlice.actions;
+export const {updateProductDetails} = productDetailsSlice.actions;
 
 //sets all reducers into variables
-export default basketSlice.reducer;
+export default productDetailsSlice.reducer;

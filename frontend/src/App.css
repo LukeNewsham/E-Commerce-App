@@ -192,6 +192,7 @@ input:invalid[focused = 'true'] ~ span {
 }
 
 .productComponent {  
+  cursor: pointer;
   position: relative;
   font-size: 0.8rem;
   text-decoration: none;
@@ -203,6 +204,25 @@ input:invalid[focused = 'true'] ~ span {
   width: 15%;
   min-width: 8rem;
   height: 12rem;
+}
+
+.productDetails {
+  display: flex;
+  margin: 4rem;
+  justify-content: space-around;
+}
+
+.halfContainer {
+  position: relative;
+  width: 35%;
+
+}
+
+.details {
+  background-color:rgb(46, 46, 46);
+  padding: 3rem 3rem 5rem 3rem;
+  border-radius: 2rem; 
+  
 }
 
 #productComponent:hover {

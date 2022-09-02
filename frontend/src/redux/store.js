@@ -4,6 +4,7 @@ import basketReducer from './basketSlice.js'
 import userReducer from './userSlice.js'
 import registerDataReducer from './registerSlice';
 import loginDataReducer from './loginSlice';
+import productDetailsSlice from './productDetailsSlice';
 
 export default configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export default configureStore({
         loginData: loginDataReducer,
         products: productsReducer,
         basket: basketReducer,
-        user: userReducer
+        user: userReducer,
+        productDetails: productDetailsSlice
     }
 })

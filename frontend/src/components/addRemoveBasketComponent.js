@@ -36,7 +36,7 @@ const AddRemoveButtons = (props) => {
     return (
         <div className='addRemoveButtons'>
             <button className='addRemoveButton'> + </button> 
-            <p className='addRemoveButton'>  </p>
+            <p className='addRemoveButton'> {props.quanity}  </p>
             <button className='addRemoveButton'> - </button>            
         </div>
     )
