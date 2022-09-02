@@ -33,6 +33,21 @@ router.post('/', async (req, res) => {
     
 });
 
+//UPDATE AN ITEM IN USER BASKET
+router.post('/update', async (req, res) => {
+    const {quanity, id} = req.body; 
+    try {
+        const basketItem = await pool.query(
+            'UPDATE basket SET quanity = $1 WHERE id = $2', 
+            [quanity, id]
+        );    
+        res.json(`Item with product ID: ${id}, was successfully updated to quanity: ${quanity} `)    
+    } catch (err) {
+        console.error(err.message);
+    }
+    
+});
+
 
 //DELETE ITEM BY ID <
 router.delete('/:id', async (req, res) => {

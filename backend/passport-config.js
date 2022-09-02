@@ -24,6 +24,8 @@ module.exports = function(passport) {
             }
 
             console.log('User successfully found. Moving onto comparing passwords...')
+            console.log(password)
+            console.log(user.password)
             bcryptCompared = await bcrypt.compare(password, user.password);
             console.log(`Passwords compared: ${bcryptCompared}`)
             if (bcryptCompared === true) {

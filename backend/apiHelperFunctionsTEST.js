@@ -1,26 +1,26 @@
-const axios = require('axios');
+//gets data directly from database
 
-const api_endpoint = "http://localhost:3000";
+const pool = require('./db')
 
-
-
-//function to get user by username
 const findUserByUsername = async (username) => {
-  const response = await axios.get(`${api_endpoint}/users/username/${username}`);
-  user = response.data[0]
-  return user;
+  try {
+    const user = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+    return user.rows[0] 
+  } catch (err) {
+    console.error(err.message);
+    return err
+  }
 };
 
-
-//function to get user by id
-// const findUserById = async (id) => {
-//   const response = await axios.get(`${api_endpoint}/users/id/${id}`);
-//   user = response.data[0]
-//   return user;
-// };
-
-
-
+const findUserById = async (id) => {
+  try {
+    const user = await pool.query('SELECT * FROM users WHERE id = $1', [id]);  
+    return user.row
+  } catch (err) {
+    console.error(err.message);
+    return err
+  }
+}
 
 module.exports = findUserByUsername;
 // module.exports = findUserById;

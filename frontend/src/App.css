@@ -102,8 +102,34 @@ body {
   justify-content: space-between;
 }
 
+<<<<<<< Updated upstream
 #productComponent {  
   background-color: ;
+=======
+.usernameErrorMessage {
+  margin-top: 1rem;
+  text-align: left;  
+  color: rgb(255, 94, 94);
+}
+
+
+.addRemoveButtons {
+  display: flex;
+  position: absolute;
+  text-align: center;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.addRemoveButton {
+  font-size: 1.2rem;
+  margin: 0 0.5rem;
+}
+
+
+.productComponent {  
+  position: relative;
+>>>>>>> Stashed changes
   font-size: 0.8rem;
   text-decoration: none;
   margin: 1rem;
