@@ -21,10 +21,12 @@ function App() {
         <Routes>
           <Route path='/' element = {<HomePage />} />
           <Route path='/products' element = {<ProductsPage />} />
+          <Route path='/products/category' element = {<ProductsPage />} />
           <Route path='/basket' element = {<BasketPage />} />
           <Route path='/account' element = {<AccountPage />} />
           <Route path='/login' element = {<LoginPage />} />
           <Route path='/register' element = {<RegisterPage />} />
+          
         </Routes>
       </div>     
     </>

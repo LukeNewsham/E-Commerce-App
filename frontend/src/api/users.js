@@ -68,12 +68,5 @@ export const loginUser = async (loginUsername, loginPassword) => {
 };
 
 
-// //function to get passport data
-// export const getPassportData = async () => {
-// const response = await fetch(`${api_endpoint}/userData`);
-//   const userData = await response.json();
-//   console.log(userData);
-//   return userData;
-//   };
 
 

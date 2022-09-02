@@ -34,6 +34,18 @@ router.post('/', async (req, res) => {
 });
 
 
+//GET PRODUCTS BY CATEGORY
+router.get('/categories/:id', async (req, res) => {
+    const {id} = req.params;
+    try {
+        const product_category = await pool.query('SELECT * FROM product_categories WHERE id = $1', [id]);
+        res.json(product_category.rows)
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
+
 //GET PRODUCT CATEGORIES 
 router.get('/categories', async (req, res) => {
     try {
@@ -45,22 +57,13 @@ router.get('/categories', async (req, res) => {
 })
 
 
-//GET PRODUCTS BY CATEGORY
-router.get('/categories/:id', async (req, res) => {
-    const {id} = req.params;
-    try {
-        const products = await pool.query('SELECT * FROM products WHERE category_id = $1', [id]);
-        res.json(products.rows)
-    } catch (err) {
-        console.error(err.message);
-    }
-})
+
 
 //GET PRODUCT BY ID 
 router.get('/:id', async (req, res) => {
     const {id} = req.params;
     try {
-        const productId = await pool.query('SELECT * FROM products WHERE id = $1', [id]);
+        const productId = await pool.query('SELECT * FROM product_categories WHERE id = $1', [id]);
         res.json(productId.rows)
     } catch (err) {
         console.error(err.message);

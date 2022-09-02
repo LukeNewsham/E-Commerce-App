@@ -7,11 +7,6 @@
     border: rgba(255, 255, 255, 0) 1px solid;
   }
 
-h1 {
-  padding: 1rem;
-  font-size: 1.5rem;
-}
-
 h2 {
   font-size: 1rem;
 }
@@ -148,9 +143,24 @@ input:invalid[focused = 'true'] ~ span {
 }
 
 .pageTitle {
+  display: flex;
   font-size: 3rem;
   text-align: left;
   text-shadow: 0.3rem 0.5rem rgb(75, 75, 75);
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+
+}
+
+.category {
+  justify-content: baseline;
+  min-height: 1rem;
+  color: grey
 }
 
 
