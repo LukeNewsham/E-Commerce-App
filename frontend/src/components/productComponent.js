@@ -1,7 +1,7 @@
 //product page -> productListComponent -> productComponent
 
 import React, {useState, useEffect} from 'react';
-// import addToBasketButton from './addToBasketComponent.js'
+import AddRemoveButtons from './addRemoveBasketComponent';
 
 
 const Product = (props) => { 
@@ -13,7 +13,7 @@ const Product = (props) => {
             <br/>
             <p> {props.description} </p>
             <br/>
-            {/* <addToBasketButton/> */}
+            <AddRemoveButtons />
         </div>
     )
 }

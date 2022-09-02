@@ -176,6 +176,19 @@ input:invalid[focused = 'true'] ~ span {
   color: rgb(255, 94, 94);
 }
 
+.addRemoveButtons {
+  display: flex;
+  position: absolute;
+  text-align: center;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.addRemoveButton {
+  font-size: 1.2rem;
+  margin: 0 0.5rem;
+}
+
 #productComponent {  
   background-color: ;
   font-size: 0.8rem;
