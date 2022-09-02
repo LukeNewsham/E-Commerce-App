@@ -6,7 +6,7 @@ import AddRemoveButtons from './addRemoveBasketComponent';
 
 const Product = (props) => { 
     return (
-        <div  id='productComponent'>             
+        <div  className='productComponent'>             
             <h2> {props.name} </h2>
             <br/>
             <p> Price: £{props.price} </p>

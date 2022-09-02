@@ -187,10 +187,12 @@ input:invalid[focused = 'true'] ~ span {
 .addRemoveButton {
   font-size: 1.2rem;
   margin: 0 0.5rem;
+  border: 0;
+  padding: 0
 }
 
-#productComponent {  
-  background-color: ;
+.productComponent {  
+  position: relative;
   font-size: 0.8rem;
   text-decoration: none;
   margin: 1rem;
