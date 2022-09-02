@@ -27,3 +27,22 @@ export const addItemToBasket = async (newProduct_id, newQuanity, newUser_id) => 
     const newBasketItem = await response.json()
     return newBasketItem
 };
+
+
+
+//update product in basket
+export const updateItemInBasket = async (newQuanity, newId) => {
+    
+    const response = await fetch(`${api_endpoint}/baskets/update`, {
+        method: 'POST',
+        body: JSON.stringify({
+            quanity: newQuanity,
+            id: newId           
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    const updatedBasketItem = await response.json()
+    return updatedBasketItem
+};
