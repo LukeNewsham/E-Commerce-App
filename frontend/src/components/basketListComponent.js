@@ -5,6 +5,7 @@ import { getBasket } from '../api/basket.js';
 import Product from './productComponent.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBasket } from '../redux/basketSlice.js';
+import BasketItem from './basketItemComponent.js';
 
 const BasketList = () => {
    
@@ -27,12 +28,15 @@ const BasketList = () => {
     return (
         <div className='listComponent'>             
             {basketItems.map((basketItems) =>       
-                <Product 
+                <BasketItem
                     key = {basketItems.id}
+                    id = {basketItems.id}
                     name = {basketItems.name}
                     description = {basketItems.description}
                     price = {basketItems.price}
                     categoryId = {basketItems.category_id}
+                    quanity = {basketItems.quanity}
+                    
                 />     
             )}
         </div>

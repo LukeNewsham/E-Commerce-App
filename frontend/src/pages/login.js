@@ -13,6 +13,8 @@ import { addBasket } from '../redux/basketSlice';
 
 export default function LoginPage() {
 
+    const [loginError, setLoginError] = useState(false);
+
     let navigate = useNavigate();
     const dispatch = useDispatch();
     const username = useSelector(state => state.loginData.username);
@@ -65,7 +67,7 @@ export default function LoginPage() {
         
         e.preventDefault();
 
-        const userData = await loginUser(username, password);  
+        let userData = await loginUser(username, password);  
         console.log(userData)         
         //if user includes req.data and not false
         if (userData){   
@@ -76,6 +78,8 @@ export default function LoginPage() {
             dispatch(addBasket(basket))
 
             navigate('../account')
+        } else {
+            setLoginError(true)
         }
        
 
@@ -95,11 +99,18 @@ export default function LoginPage() {
                         <FormInput key={input.id} type={input.type} placeholder={input.placeholder} value={input.value} pattern={input.pattern} onChange={input.onChange} required errorMessage={input.errorMessage}/>
                     ))}   
 
+{
+                    (loginError) ? 
+                        <p className='usernameErrorMessage'> Incorrect username or password </p>
+                            : ''
+                    }
+
                     <button type='submit' className='submit'> Login </button> 
                     <br></br>
                     <button> 
                         <Link to='/register'> or sign up for free </Link>
                     </button>
+                    
                 </form>
             </div> 
 

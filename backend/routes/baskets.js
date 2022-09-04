@@ -9,7 +9,7 @@ const pool = require('../db')
 router.get('/user/:id', async (req, res) => { 
     const {id} = req.params;   
     try {
-        allUserBasketItems = await pool.query('SELECT * FROM basket LEFT JOIN products ON basket.product_id = products.id WHERE user_id = $1', [id]);  
+        allUserBasketItems = await pool.query('SELECT basket.quanity, basket.user_id, products.id, products.name, products.description FROM basket LEFT JOIN products ON basket.product_id = products.id WHERE user_id = $1 ORDER BY id', [id]);  
         res.json(allUserBasketItems.rows)  
     } catch (err) {
         console.error(err.message);
@@ -40,7 +40,7 @@ router.post('/update', async (req, res) => {
     const {quanity, id} = req.body; 
     try {
         const basketItem = await pool.query(
-            'UPDATE basket SET quanity = $1 WHERE id = $2', 
+            'UPDATE basket SET quanity = $1 WHERE product_id = $2', 
             [quanity, id]
         );    
         res.json(`Item with product ID: ${id}, was successfully updated to quanity: ${quanity} `)    
@@ -52,11 +52,11 @@ router.post('/update', async (req, res) => {
 
 
 
-//DELETE ITEM BY ID <
+//DELETE ITEM BY ID 
 router.delete('/:id', async (req, res) => {
     const {id} = req.params;
     try {
-        const basketItem = await pool.query('DELETE FROM basket WHERE id = $1', [id]);
+        const basketItem = await pool.query('DELETE FROM basket WHERE product_id = $1', [id]);
         res.json(basketItem.rows)
     } catch (err) {
         console.error(err.message);

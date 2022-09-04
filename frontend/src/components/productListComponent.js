@@ -33,6 +33,7 @@ const ProductsList = () => {
                     description = {product.description}
                     price = {product.price}
                     categoryId = {product.category_id}
+                    image = {product.image}
                 />     
             )}
         </div>

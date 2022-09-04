@@ -14,21 +14,30 @@ export default function ProductsDetailsPage() {
     let basketItemQuanity = 0
     //if there is an array however
     if (basketItems !== 'noData') {
-        let basketItem = basketItems.find(item => item.id === productDetails.id)  
-        basketItemQuanity = basketItem.quanity
+        let basketItem = basketItems.find(item => item.id === productDetails.id)
+        
+        console.log(basketItem)
+        if (basketItem != undefined) {
+            basketItemQuanity = basketItem.quanity
+        }
     }
+
+    const image = require(`../media/images/${productDetails.image}`);
+    console.log(productDetails.description)
 
     return ( 
         <>
             <h1 className='pageTitle'> {productDetails.name} </h1>
             <div className = 'productDetails'>     
                 <div className='halfContainer'> 
+                    <img src={image}  alt="placeholder" className='productImage'></img>
                 </div>  
                 <div className='halfContainer details'> 
                     <h1> £{productDetails.price}</h1>
                     <br></br>
-                    <p> {productDetails.description}</p>
-                    <AddRemoveButtons quanity = {basketItemQuanity} />
+                    hello
+                    {productDetails.description}
+                    <AddRemoveButtons quanity = {basketItemQuanity} id ={productDetails.id} />
                 </div>   
             </div>    
         </>

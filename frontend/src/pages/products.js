@@ -4,15 +4,7 @@ import { getProductsByCategory } from '../api/products.js';
 
 export default function ProductsPage() {
 
-
-
-
-
-
-
     return ( 
-    
-
         <>
             <h1 className='pageTitle'> Products </h1>
             

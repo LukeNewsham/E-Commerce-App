@@ -11,7 +11,7 @@ export const getBasket = async (id) => {
 
 
 //add product to basket
-export const addItemToBasket = async (newProduct_id, newQuanity, newUser_id) => {
+export const addItemToBasket = async (newProduct_id, newUser_id, newQuanity) => {
     
     const response = await fetch(`${api_endpoint}/baskets`, {
         method: 'POST',
@@ -31,8 +31,9 @@ export const addItemToBasket = async (newProduct_id, newQuanity, newUser_id) => 
 
 
 //update product in basket
-export const updateItemInBasket = async (newQuanity, newId) => {
-    
+export const updateItemInBasket = async (newId, newQuanity) => {
+
+    console.log(`Updating item ${newId} to quantity ${newQuanity}`) 
     const response = await fetch(`${api_endpoint}/baskets/update`, {
         method: 'POST',
         body: JSON.stringify({
@@ -46,3 +47,15 @@ export const updateItemInBasket = async (newQuanity, newId) => {
     const updatedBasketItem = await response.json()
     return updatedBasketItem
 };
+
+//delete product in basket
+export const deleteItemInBasket = async (product_id) => {
+    console.log(`Deleting product with id: ${product_id}`)
+    const response = await fetch(`${api_endpoint}/baskets/${product_id}`, {
+        method: 'DELETE'
+    });
+    console.log(response)
+    const basketItems = await response.json();
+      
+    return basketItems;
+  };
