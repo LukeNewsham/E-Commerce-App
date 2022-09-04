@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {updateUsername, updatePassword, updateConfirmPassword} from '../redux/loginSlice.js'
 import FormInput from '../components/formInputComponent';
 import { addUser } from '../redux/userSlice.js';
+import { getBasket } from '../api/basket';
+import { addBasket } from '../redux/basketSlice';
 
 
 export default function LoginPage() {
@@ -68,6 +70,11 @@ export default function LoginPage() {
         //if user includes req.data and not false
         if (userData){   
             dispatch(addUser(userData))
+
+            //gets basket data for user
+            let basket = await getBasket(userData.id)
+            dispatch(addBasket(basket))
+
             navigate('../account')
         }
        
