@@ -15,15 +15,15 @@ const Product = (props) => {
         console.log(props) 
         dispatch(updateProductDetails(props))  
     }
-    const image = require(`../media/images/${props.image}`);
+const image = require(`../media/images/${props.image}`);
    
     
     
     return (
         <Link to='/products/product_details' className='productComponent' onClick = {updateProductDetailsId}>  
             <div >             
-                <h2> {props.name} </h2>
-                <p> £{props.price} </p>
+                <h2 className = 'productTitle'> {props.name} </h2>
+                <h2 className = 'productPrice'> £{props.price} </h2>
                 <img src={image}  alt="placeholder" className='productImage'></img>             
                 
             </div>

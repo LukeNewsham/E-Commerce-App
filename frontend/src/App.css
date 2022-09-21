@@ -1,3 +1,10 @@
+:root {
+  --light-gray: rgb(120, 120, 120);
+  --dark-gray: rgb(41, 41, 41);
+  --shadow: rgb(31, 31, 31);
+  --price: rgb(67, 158, 88);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -27,7 +34,7 @@ input {
   background: transparent;
   height: 1rem;
   padding: 0.5rem 0.5rem 0.5rem 0rem;
-  border-bottom: 0.5px solid rgb(120, 120, 120);
+  border-bottom: 0.5px solid var(--light-gray);
   font-size: 1.2rem;
 }
 
@@ -52,23 +59,14 @@ span {
   display: none
 }
 
-
-
-/* input:invalid[focused = 'true']{
-  border-bottom: 1px rgb(255, 94, 94) solid; */
-/* } */
-
 input:invalid[focused = 'true'] ~ span {
   display: block;
 }
 
-.productImage {
-  width: 70%;
-}
 
 
 .form {
-  background-color: rgb(35, 35, 35);
+  background-color: var(--dark-gray);
   border-radius: 2rem;
   padding: 3rem;
   margin-right: auto;
@@ -87,7 +85,7 @@ input:invalid[focused = 'true'] ~ span {
     top: 0rem;
     z-index: 2;
     width: 97%;
-    background-color:  rgb(35, 35, 35);
+    background-color: var(--dark-gray);
     border-radius: 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -152,7 +150,7 @@ input:invalid[focused = 'true'] ~ span {
   display: flex;
   font-size: 3rem;
   text-align: left;
-  text-shadow: 0.3rem 0.5rem rgb(75, 75, 75);
+  /* text-shadow: 0.3rem 0.5rem var(--shadow) */
 }
 
 .categories {
@@ -166,15 +164,11 @@ input:invalid[focused = 'true'] ~ span {
 .category {
   justify-content: baseline;
   min-height: 1rem;
-  color: grey
+  color: var(--light-gray)
 }
 
 
-.listComponent {  
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+
 
 .usernameErrorMessage {
   margin-top: 1rem;
@@ -197,22 +191,58 @@ input:invalid[focused = 'true'] ~ span {
   padding: 0
 }
 
-.productComponent {  
+.listComponent {  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  
+}
+
+.productComponent {
+  width: 15rem;
   cursor: pointer;
   position: relative;
   font-size: 0.8rem;
-  text-decoration: none;
-  margin: 1rem;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  border: 0.1rem solid orange;
-  width: 15%;
-  min-width: 8rem;
-  height: 12rem;
+  flex-grow: 1;
+  flex-shrink: 0;
+  
+}
+
+.productPrice {
+  position: absolute;
+  padding: 0.5rem 1rem;
+  background-color: var(--price);
+  right: -0.8rem;
+  bottom: -0.8rem;  
+  border-radius: 0 0 0 0;
+}
+
+.productTitle {
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: var(--dark-gray);
+  opacity: 70%;
+  position: absolute;
+  bottom: 0;
+  background-color: var(--dark-gray);
+  
+}
+
+.productImage {
+  position: relative;
+  width: 100%;
+  z-index: -1;
+}
+
+.basketImage {
+  width: auto;
+  height: 10rem;
+  box-shadow: 1rem 1rem 1rem 1rem var(--shadow);
 }
 
 .basketItemComponent {
+  display: flex;
   position: relative;
   text-align: left;
   font-size: 0.8rem;
@@ -221,25 +251,30 @@ input:invalid[focused = 'true'] ~ span {
   margin: 1rem;
   padding: 1.5rem;
   width: 100%;
-  overflow: hidden;
+  max-width: 40rem;
 }
 
 .productDetails {
   display: flex;
-  margin: 4rem;
   justify-content: space-around;
+  z-index: -1;
 }
 
 .halfContainer {
   position: relative;
-  width: 35%;
+  width: 40%;
+}
 
+.basketInfoContainer {
+  padding: 0 2rem;
+  width: auto;
 }
 
 .details {
+  left: -10%;
+  top: 2rem;
   background-color:rgb(46, 46, 46);
-  padding: 3rem 3rem 5rem 3rem;
-  border-radius: 2rem; 
+  padding: 3rem 3rem 5rem 8rem;
   
 }
 

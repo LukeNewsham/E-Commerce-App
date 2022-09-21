@@ -17,13 +17,21 @@ const BasketItem = (props) => {
         dispatch(updateProductDetails(props))  
     }
 
-    return (        
-        <div className='basketItemComponent'>             
-            <h2> {props.name} </h2>
-            <br/>
-            <p> Price: £{props.price} </p>  
-            <AddRemoveButtons quanity = {props.quanity} id = {props.id} />
-        </div>
+    const image = require(`../media/images/${props.image}`);
+
+    return (     
+        <div className='basketItemComponent'>
+            <div>
+                <img src={image}  alt="placeholder" className='basketImage'></img>  
+            </div>
+
+            <div className='basketInfoContainer'>                              
+                <h2> {props.name} </h2>
+                <br/>
+                <p> Price: £{props.price} </p>  
+                <AddRemoveButtons quanity = {props.quanity} id = {props.id} />
+            </div>
+        </div>   
     )
 }
 

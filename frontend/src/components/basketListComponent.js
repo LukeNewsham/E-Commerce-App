@@ -37,6 +37,8 @@ const BasketList = () => {
                     categoryId = {basketItems.category_id}
                     quanity = {basketItems.quanity}
                     
+                    image = {basketItems.image}
+                    
                 />     
             )}
         </div>

@@ -1,4 +1,5 @@
 import {useSelector, useDispatch } from 'react-redux';
+import AddButton from '../components/addButton';
 import AddRemoveButtons from '../components/addRemoveBasketComponent';
 
 export default function ProductsDetailsPage() {
@@ -37,7 +38,14 @@ export default function ProductsDetailsPage() {
                     <br></br>
                     hello
                     {productDetails.description}
-                    <AddRemoveButtons quanity = {basketItemQuanity} id ={productDetails.id} />
+
+
+                    {(basketItemQuanity === 0) ?
+                         <AddButton quanity = {basketItemQuanity} id ={productDetails.id}/> 
+                         :
+                        <AddRemoveButtons quanity = {basketItemQuanity} id ={productDetails.id} />
+                    }
+                    
                 </div>   
             </div>    
         </>
