@@ -4,50 +4,42 @@ const bcrypt = require("bcrypt");
 const findUserByUsername = require('./passportHelperFunctions.js');
 const findUserById = require('./passportHelperFunctions.js');
 
-
-module.exports = function(passport) {
-    //username is req.body.username etc.
-    passport.use(
-        new LocalStrategy( async (username, password, done) => {
-            
-            //logs in terminal not browser
-            console.log(`Username: ${username} Password: ${password}`)
-
-            //find user in database by username            
-            const user = await findUserByUsername(username);           
-
-            console.log(user)
-
-            if (!user) {
-                console.log('No user')
-                return done(null, false)
-            }
-
-            console.log('User successfully found. Moving onto comparing passwords...')
-            bcryptCompared = await bcrypt.compare(password, user.password);
-            console.log(`Passwords compared: ${bcryptCompared}`)
-            if (bcryptCompared === true) {
-                console.log(`Passwords match! Sending Done`)
-                return done(null, user)
-            } else {
-                console.log(`Passwords do not match. Sending Done`)
-                return done(null, false)
-                
-            }            
-        })
-    );
+//callback function to verify user with given username and password. Returns done with result
+const verifyCallback = async (username, password, done) => {    
     
-    passport.serializeUser((user, done) => {
-        console.log(`Serializing user with ID: ${user.id}`)
-        return done(null, user.id)
-    });
+    //find user in database by username            
+    const user = await findUserByUsername(username);   
+    
+    if (!user) {
+        console.log('No user')
+        return done(null, false)
+    };
+    
+    bcryptCompared = await bcrypt.compare(password, user.password);
+    
+    if (bcryptCompared === true) {
+        console.log(`Passwords match! Sending Done`)
+        return done(null, user)
+    } else {
+        console.log(`Passwords do not match. Sending Done`)
+        return done(null, false)        
+    }            
+};
 
-    //Do not need as logging in manually 
-    // passport.deserializeUser((id, done) => { 
-    //     console.log('Deserializing user...')
-    //     return done(null, findUserById(id))
-    // });
-}
+passport.use(new LocalStrategy(verifyCallback));
+
+//adds passport with user id into express session 
+passport.serializeUser((user, done) => {
+    console.log(`Serializing user with ID: ${user.id}`);
+    done(null, user.id);
+});
+
+//checks if user id matches passport id in express session
+passport.deserializeUser( async (id, done) => { 
+    console.log(`deserializing user with ID: ${id}`);
+    let user = await findUserById(id) ;  
+    done(null, user)
+});
 
 
 

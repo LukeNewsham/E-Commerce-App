@@ -1,14 +1,3 @@
-// import express from 'express';
-// const app = express()
-// import cors from 'cors';
-// import pool from './db.js';
-// import session from 'express-session';
-// import passport from 'passport';
-// import cookieParser from 'cookie-parser';
-// import bodyParser from 'body-parser';
-
-
-
 const express = require('express');
 const app = express()
 const cors = require('cors')
@@ -19,34 +8,32 @@ const flash = require('express-flash')
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser')
 
-
-
-
-
-
-
 //MIDDLEWARE 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors());
-
-
+app.use(cookieParser());
 app.use(session({
     secret: 'secret',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    }
 }));
 
-app.use(cookieParser('secret'));
+//grabs the passport config and then re initializes every time the frontend accesses the back end
+require('./passport-config');
 app.use(passport.initialize());
 app.use(passport.session());
-require('./passport-config')(passport);
-// import initialize from './passport-config.js';
-// initialize(passport)
 
+//console logs data for debugging
+app.use((req, res, next) => {
+    console.log(req.session);
+    console.log(req.user)
+    next();
+})
 
-
-//LOGIN AND REGISTER
 
 //LOGIN A USER
 //takes req.body.username and req.body.password and passes it into passport local strategy
@@ -55,7 +42,7 @@ app.post('/login', (req, res, next) => {
         if (err) throw err;
         if (!user) return res.send(false);
         else {
-             req.logIn(user, err => {
+             req.login(user, err => {
                 if (err) throw err;
                 console.log(`Passport local authenticated sending req.user: `)
                 console.log(req.user)
@@ -65,25 +52,6 @@ app.post('/login', (req, res, next) => {
         
     })(req, res, next)
 });
-
-
-
-
-
-
-
-// app.get('/userData', (req, res) => {
-//     if (!req.user) {
-//         res.send(false)
-//     } else {
-//         res.send(req.user)   
-//     }
-       
-// });
-    
-
-
-
 
 
 //ROUTES

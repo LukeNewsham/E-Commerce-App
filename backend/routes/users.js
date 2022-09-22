@@ -4,19 +4,19 @@ const pool = require('../db')
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
-// import express from 'express';
-// const router = express.Router()
-// import p from 'pg';
-// const Pool = p.Pool;
-// import bcrypt from 'bcrypt';
-
-
-
 
 //all start with /users
 
 //GET ALL USERS
 router.get('/', async (req, res) => {
+
+    // if (req.session.count) {
+    //     req.session.count ++
+    // } else {
+    //     req.session.count = 1
+    // }    
+    // console.log(req.session.count, req.session)
+
     try {
         const allUsers = await pool.query('SELECT * FROM users');
         res.json(allUsers.rows)
