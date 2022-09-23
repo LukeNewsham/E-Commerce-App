@@ -16,43 +16,54 @@ app.use(cookieParser());
 app.use(session({
     secret: 'secret',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24
+        maxAge: 1000 * 60 * 60 * 24,
+        sameSite: false
     }
 }));
+
+
 
 //grabs the passport config and then re initializes every time the frontend accesses the back end
 require('./passport-config');
 app.use(passport.initialize());
 app.use(passport.session());
 
-//console logs data for debugging
+// //console logs data for debugging
 app.use((req, res, next) => {
-    console.log(req.session);
-    console.log(req.user)
+    console.log(req.isAuthenticated());
     next();
 })
 
 
 //LOGIN A USER
 //takes req.body.username and req.body.password and passes it into passport local strategy
-app.post('/login', (req, res, next) => {    
-    passport.authenticate("local", (err,user) => {        
-        if (err) throw err;
-        if (!user) return res.send(false);
-        else {
-             req.login(user, err => {
-                if (err) throw err;
-                console.log(`Passport local authenticated sending req.user: `)
-                console.log(req.user)
-                return res.send(req.user)
-            })
-        } 
-        
-    })(req, res, next)
-});
+app.post('/login', passport.authenticate("local"), (req, res, next) => {
+    console.log(req.isAuthenticated());
+    // res.send(req.user);
+    next()
+})
 
+
+
+// (req, res, next) => {    
+//     passport.authenticate("local", (err,user) => { 
+//         if (err) throw err;
+//         if (!user) return res.send(false);
+//         else {
+//              req.login(user, err => {
+//                 if (err) throw err;
+//                 console.log(`Passport local authenticated sending req.user: `)
+//                 console.log(req.user)
+//                 res.send(req.user)
+//                 console.log(req.session.passport);
+//                 next();
+//             })
+//         } 
+        
+//     })(req, res, next)
+// });
 
 //ROUTES
 

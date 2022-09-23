@@ -37,8 +37,12 @@ passport.serializeUser((user, done) => {
 //checks if user id matches passport id in express session
 passport.deserializeUser( async (id, done) => { 
     console.log(`deserializing user with ID: ${id}`);
-    let user = await findUserById(id) ;  
-    done(null, user)
+    let user = await findUserById(id) ;
+    if (user) {
+        return done(null, user)
+    } else {
+        return done(null, false)
+    }
 });
 
 

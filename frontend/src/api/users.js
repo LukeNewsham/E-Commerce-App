@@ -45,6 +45,12 @@ export const loginUser = async (loginUsername, loginPassword) => {
     
     const response = await fetch(`${api_endpoint}/login`, {
         method: 'POST',
+        // credentials: "include",
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json',
+        //         'Access-Control-Allow-Origin': 'http://localhost:3001/'
+        //     },
         body: JSON.stringify({
             username: loginUsername,
             password: loginPassword
