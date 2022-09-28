@@ -21,10 +21,10 @@ const image = require(`../media/images/${props.image}`);
     
     return (
         <Link to='/products/product_details' className='productComponent' onClick = {updateProductDetailsId}>  
-            <div >             
+            <div >                           
                 <h2 className = 'productTitle'> {props.name} </h2>
-                <h2 className = 'productPrice'> £{props.price} </h2>
-                <img src={image}  alt="placeholder" className='productImage'></img>             
+                <img src={image}  alt="placeholder" className='productImage'></img>  
+                <h2 className = 'productPrice'> £{props.price} </h2>             
                 
             </div>
         </Link>

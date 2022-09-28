@@ -11,12 +11,12 @@ export default function Navbar() {
 
     return (
         <div className = 'nav'>
-            <Link to='/' className = 'siteTitle'> Chalky. </Link>
+            <Link to='/' className = 'siteTitle'> Gizmo. </Link>
             <ul>
                 {/* <li> <NavLink to='/'  className={navClass} > home </NavLink> </li> */}
                 {/* <li> <NavLink to='/products' className={navClass} > all products </NavLink> </li> */}
                 <li> <NavLink to='/products' className={navClass} > all </NavLink> </li>
-                <li> <NavLink to='/mobilephones' className={navClass} > mobile phones </NavLink> </li>
+                <li> <NavLink to='/mobilePhones' className={navClass} > mobile phones </NavLink> </li>
                 <li> <NavLink to='/laptops' className={navClass} > laptops </NavLink> </li>
                 <li> <NavLink to='/gadgets' className={navClass} > gadgets </NavLink> </li>
                 {

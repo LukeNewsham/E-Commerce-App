@@ -11,6 +11,9 @@ import BasketPage from './pages/basket';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
 import ProductsDetailsPage from './pages/product_details';
+import MobilePhonesPage from './pages/mobilephones';
+import GadgetsPage from './pages/gadgets';
+import LaptopsPage from './pages/laptops';
 
 
 
@@ -22,7 +25,9 @@ function App() {
         <Routes>
           <Route path='/' element = {<HomePage />} />
           <Route path='/products' element = {<ProductsPage />} />
-          <Route path='/products/category' element = {<ProductsPage />} />
+          <Route path='/mobilePhones' element = {<MobilePhonesPage />} />
+          <Route path='/laptops' element = {<LaptopsPage />} />
+          <Route path='/gadgets' element = {<GadgetsPage />} />
           <Route path='/products/product_details' element = {<ProductsDetailsPage />} />
           <Route path='/basket' element = {<BasketPage />} />
           <Route path='/account' element = {<AccountPage />} />

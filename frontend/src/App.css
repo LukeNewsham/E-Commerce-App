@@ -1,10 +1,13 @@
 /* ---------------------------- App wide ---------------------------- */
 
 :root {
-  --light-gray: rgb(120, 120, 120);
-  --dark-gray: rgb(41, 41, 41);
-  --shadow: rgb(31, 31, 31);
-  --price: rgb(67, 158, 88);
+  --product: rgb(22, 22, 22);
+  --nav: rgb(31, 31, 31);
+  --shadow: rgb(0, 0, 0);
+  --price: rgb(158, 238, 134);
+  /* --background: linear-gradient(to bottom right, rgb(36, 63, 85), rgb(22, 22, 22)); */
+  --background: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(34, 34, 34));
+  --yellow: rgb(252, 255, 77)
 }
 
 * {
@@ -20,7 +23,7 @@
 /* ---------------------------- Tags ---------------------------- */
 
 html {
-  background-image: linear-gradient(to bottom right, rgb(33, 78, 114), rgb(22, 22, 22));
+  background-image: var(--background);
   background-attachment: fixed;
 }
 
@@ -83,9 +86,8 @@ span {
 }
 
 .pageTitle {
-  display: flex;
-  font-size: 3rem;
-  text-align: left;
+  font-size: 1.5rem;
+  margin: 0 0 3rem 0;
   /* text-shadow: 0.3rem 0.5rem var(--shadow) */
 }
 
@@ -93,23 +95,23 @@ span {
 /* ---------- nav component */
 .nav {
   position: fixed;
+  background-color: var(--nav);
   width: 70%;
   right: 15%;
   left: 15%;
-  top: 0rem; 
-  background-color: var(--dark-gray);
+  top: 0rem;   
   border-radius: 0 0 1rem 1rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   z-index: 2;
+  justify-content: space-around;  
 }
   .nav ul {
     list-style: none;
     margin: 0;
     display: flex;
     align-items: stretch;
-    height: 5rem;    
+    height: 4rem;
   }
   .nav a {
     text-decoration: none;
@@ -117,7 +119,7 @@ span {
     display: flex;
     align-items: center;    
     font-size: 0.9rem;
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
     .nav a:hover  {
       color: rgb(255, 255, 255);
@@ -127,19 +129,29 @@ span {
       color: rgb(97, 55, 55);
     }
     .nav a.siteTitle {
+      padding: 0.5rem 0;
       font-size: 2rem;
       height: auto;
       font-weight: bolder;
-      color: white;
+      color: var(--yellow);
     }
 
 .navActive {
   color: rgb(252, 252, 252);
   /* font-weight: bolder; */
-  border-bottom: rgb(136, 136, 136) solid 1px ;
+  border-bottom: var(--yellow) solid 1px ;
 }
 .navInactive {
   color: rgb(134, 134, 134);
+}
+
+.blur {
+  z-index: 100;
+  position: fixed;
+  width: 100%;
+  top: 5rem;
+  backdrop-filter: blur(3px);
+  height: 6rem;
 }
 
 .hidden {
@@ -152,34 +164,33 @@ span {
 /* ---------- product component */
 
 .productComponent {
-  width: 15rem;
-  cursor: pointer;
   position: relative;
-  font-size: 0.8rem;
+  cursor: pointer;
+  background-color: var(--product);
+  padding: 1rem;
+  width: 15rem;
+  border-radius: 1rem;
+  box-shadow: 0rem 1rem 1rem var(--shadow);
   flex-grow: 1;
   flex-shrink: 0;  
 }
 .productPrice {
   position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.5rem;
+  text-align: center;
   padding: 0.5rem 1rem;
-  background-color: var(--price);
-  right: -0.8rem;
-  bottom: -0.8rem;  
-  border-radius: 0 0 0 0;
+  color: var(--price);
+  font-weight: bolder;
 }
 .productTitle {
-  width: 100%;
-  padding: 0.5rem 0;
-  background-color: var(--dark-gray);
-  opacity: 70%;
-  position: absolute;
-  bottom: 0;
-  background-color: var(--dark-gray);  
+  margin: 0.5rem 0;
+  color: var(--light-gray)
 }
 .productImage {
-  position: relative;
-  width: 100%;
-  z-index: -1;
+  margin: 1rem;
+  width: 50%;
 }
 .productDetails {
   display: flex;
