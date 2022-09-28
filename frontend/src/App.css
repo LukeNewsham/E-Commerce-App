@@ -1,3 +1,5 @@
+/* ---------------------------- App wide ---------------------------- */
+
 :root {
   --light-gray: rgb(120, 120, 120);
   --dark-gray: rgb(41, 41, 41);
@@ -14,15 +16,21 @@
     border: rgba(255, 255, 255, 0) 1px solid;
   }
 
+
+/* ---------------------------- Tags ---------------------------- */
+
+html {
+  background-image: linear-gradient(to bottom right, rgb(33, 78, 114), rgb(22, 22, 22));
+  background-attachment: fixed;
+}
+
 h2 {
   font-size: 1rem;
 }
 
-body {
-  background-color: rgb(22, 22, 22);
+a {
+  text-decoration: none;
 }
-
-
 
 label {
   margin-right: 1.5rem;
@@ -38,6 +46,10 @@ input {
   font-size: 1.2rem;
 }
 
+input:invalid[focused = 'true'] ~ span {
+  display: block;
+}
+
 button {
   font-weight: bold;
   background-color: transparent;
@@ -47,11 +59,6 @@ button {
   cursor: pointer;
 }
 
-a {
-  text-decoration: none;
-  
-}
-
 span {
   margin-top: 1rem;
   text-align: left;  
@@ -59,11 +66,154 @@ span {
   display: none
 }
 
-input:invalid[focused = 'true'] ~ span {
-  display: block;
+
+
+/* ---------------------------- class's ---------------------------- */
+
+
+.mainContainer {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 5rem 0 5rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rem;    
+}
+
+.pageTitle {
+  display: flex;
+  font-size: 3rem;
+  text-align: left;
+  /* text-shadow: 0.3rem 0.5rem var(--shadow) */
 }
 
 
+/* ---------- nav component */
+.nav {
+  position: fixed;
+  width: 70%;
+  right: 15%;
+  left: 15%;
+  top: 0rem; 
+  background-color: var(--dark-gray);
+  border-radius: 0 0 1rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  z-index: 2;
+}
+  .nav ul {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    align-items: stretch;
+    height: 5rem;    
+  }
+  .nav a {
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;    
+    font-size: 0.9rem;
+    padding: 0 2rem;
+  }
+    .nav a:hover  {
+      color: rgb(255, 255, 255);
+      /* border-bottom: solid orange 1px; */
+    }
+    .nav a:active {
+      color: rgb(97, 55, 55);
+    }
+    .nav a.siteTitle {
+      font-size: 2rem;
+      height: auto;
+      font-weight: bolder;
+      color: white;
+    }
+
+.navActive {
+  color: rgb(252, 252, 252);
+  /* font-weight: bolder; */
+  border-bottom: rgb(136, 136, 136) solid 1px ;
+}
+.navInactive {
+  color: rgb(134, 134, 134);
+}
+
+.hidden {
+  visibility:hidden; 
+}
+
+
+/* ---- */
+
+/* ---------- product component */
+
+.productComponent {
+  width: 15rem;
+  cursor: pointer;
+  position: relative;
+  font-size: 0.8rem;
+  flex-grow: 1;
+  flex-shrink: 0;  
+}
+.productPrice {
+  position: absolute;
+  padding: 0.5rem 1rem;
+  background-color: var(--price);
+  right: -0.8rem;
+  bottom: -0.8rem;  
+  border-radius: 0 0 0 0;
+}
+.productTitle {
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: var(--dark-gray);
+  opacity: 70%;
+  position: absolute;
+  bottom: 0;
+  background-color: var(--dark-gray);  
+}
+.productImage {
+  position: relative;
+  width: 100%;
+  z-index: -1;
+}
+.productDetails {
+  display: flex;
+  justify-content: space-around;
+  z-index: -1;
+}
+
+/* ---- */
+
+/* ---------- basket component */
+
+.basketImage {
+  width: auto;
+  height: 10rem;
+  box-shadow: 1rem 1rem 1rem 1rem var(--shadow);
+}
+.basketItemComponent {
+  display: flex;
+  position: relative;
+  text-align: left;
+  font-size: 0.8rem;
+  text-decoration: none;
+  border-bottom: solid gray 1px;
+  margin: 1rem;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 40rem;
+}
+.basketInfoContainer {
+  padding: 0 2rem;
+  width: auto;
+}
+
+/* ---- */
 
 .form {
   background-color: var(--dark-gray);
@@ -78,79 +228,10 @@ input:invalid[focused = 'true'] ~ span {
 .submit {
   width: 100%;
 }
-  
-.nav {
-    position: fixed;
-    margin: 1rem;
-    top: 0rem;
-    z-index: 2;
-    width: 97%;
-    background-color: var(--dark-gray);
-    border-radius: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: stretch; 
-    height: auto;
-    
-  }
-
-  
-.nav ul {
-    list-style: none;
-    margin: 0;
-    display: flex;
-    align-items: stretch;
-    height: 5rem;    
-  }
-
-.nav a {
-    text-decoration: none;
-    height: 100%;
-    display: flex;
-    align-items: center;    
-    font-size: 1rem;
-    padding: 0 2rem;
-    color: rgb(134, 134, 134);
-  }
-
-
-.nav a:hover {
-    color: rgb(255, 255, 255);
-    border-bottom: solid orange 1px;
-}
-  
-.nav a:active {
-    color: rgb(255, 255, 255);   
-}
-
-.nav a.siteTitle {
-    font-size: 2rem;
-    height: auto;
-    font-weight: bolder;
-    color: white;
-  }
-
-.mainContainer {
-    padding: 0 5rem 0 5rem;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    margin: 0rem;
-    margin-top: 10rem;
-    
-}
 
 .bannerImage {  
   width: 100%;
   object-fit: cover;
-}
-
-.pageTitle {
-  display: flex;
-  font-size: 3rem;
-  text-align: left;
-  /* text-shadow: 0.3rem 0.5rem var(--shadow) */
 }
 
 .categories {
@@ -158,7 +239,6 @@ input:invalid[focused = 'true'] ~ span {
   justify-content: center;
   gap: 2rem;
   padding: 2rem;
-
 }
 
 .category {
@@ -166,9 +246,6 @@ input:invalid[focused = 'true'] ~ span {
   min-height: 1rem;
   color: var(--light-gray)
 }
-
-
-
 
 .usernameErrorMessage {
   margin-top: 1rem;
@@ -195,69 +272,7 @@ input:invalid[focused = 'true'] ~ span {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 3rem;
-  
-}
-
-.productComponent {
-  width: 15rem;
-  cursor: pointer;
-  position: relative;
-  font-size: 0.8rem;
-  flex-grow: 1;
-  flex-shrink: 0;
-  
-}
-
-.productPrice {
-  position: absolute;
-  padding: 0.5rem 1rem;
-  background-color: var(--price);
-  right: -0.8rem;
-  bottom: -0.8rem;  
-  border-radius: 0 0 0 0;
-}
-
-.productTitle {
-  width: 100%;
-  padding: 0.5rem 0;
-  background-color: var(--dark-gray);
-  opacity: 70%;
-  position: absolute;
-  bottom: 0;
-  background-color: var(--dark-gray);
-  
-}
-
-.productImage {
-  position: relative;
-  width: 100%;
-  z-index: -1;
-}
-
-.basketImage {
-  width: auto;
-  height: 10rem;
-  box-shadow: 1rem 1rem 1rem 1rem var(--shadow);
-}
-
-.basketItemComponent {
-  display: flex;
-  position: relative;
-  text-align: left;
-  font-size: 0.8rem;
-  text-decoration: none;
-  border-bottom: solid gray 1px;
-  margin: 1rem;
-  padding: 1.5rem;
-  width: 100%;
-  max-width: 40rem;
-}
-
-.productDetails {
-  display: flex;
-  justify-content: space-around;
-  z-index: -1;
+  gap: 3rem;  
 }
 
 .halfContainer {
@@ -265,35 +280,29 @@ input:invalid[focused = 'true'] ~ span {
   width: 40%;
 }
 
-.basketInfoContainer {
-  padding: 0 2rem;
-  width: auto;
-}
-
 .details {
   left: -10%;
   top: 2rem;
   background-color:rgb(46, 46, 46);
-  padding: 3rem 3rem 5rem 8rem;
-  
+  padding: 3rem 3rem 5rem 8rem;  
 }
 
-#productComponent:hover {
-  box-shadow: 0rem 0rem 1rem 0.2rem rgb(65, 65, 65);
-  border-color: rgb(198, 201, 39);
-}
+
+
+/* ---------------------------- Id's ---------------------------- */
 
 #loginOrAccount {
   margin-left: 3rem;
   margin-right: 1rem;
 }
 
-#loginOrAccount:hover {
-  border-bottom: 1px yellow solid;
-}
 
 
 
+
+
+
+/* ---------------------------- Media Queries ---------------------------- */
 
 @media only screen and (max-width: 700px) { 
 
@@ -301,41 +310,35 @@ h2 {
     font-size: 1rem;
 }
 
-.nav {
-    justify-content: space-around;
-    align-items: stretch; 
-    padding: 1.5rem 0 ; 
-}
 
-.nav a.siteTitle {
-    font-size: 2.5rem;
+.mainContainer {
+  padding: 0 0rem 0 0rem;  
 }
-
-.nav ul {    
-    height: 3rem;
-}
-
-.nav a {    
-    text-decoration: none;
-    height: 100%;
-    display: flex;
-    align-items: center;    
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-}
-
 
 .pageTitle {
   font-size: 2rem;
   text-align: center;
 }
 
-
-.mainContainer {
-    padding: 0 0rem 0 0rem;
-    
+.nav {
+    justify-content: space-around;
+    align-items: stretch; 
+    padding: 1.5rem 0 ; 
 }
-
+  .nav ul {    
+    height: 3rem;
+  }
+  .nav a {    
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;    
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+    .nav a.siteTitle {
+        font-size: 2.5rem;
+    }  
 
 
 #productListComponent {  
@@ -346,8 +349,7 @@ h2 {
   font-size: 0.8rem;  
   width: 100%;
   max-width: 15rem;
-  min-width: 8rem;
-  
+  min-width: 8rem;  
 }
 
 }

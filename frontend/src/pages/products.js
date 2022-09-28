@@ -8,15 +8,6 @@ export default function ProductsPage() {
         <>
             <h1 className='pageTitle'> Products </h1>
             
-
-            <div className ='categories'>                 
-                <h2 className='category' > Mobile Phones </h2> 
-                <h2 className='category'> Console Games </h2> 
-                <h2 className='category' > Home Tech </h2> 
-                <h2 className='category'> Misc Tech </h2> 
-                <h2 className='category'> All </h2> 
-            </div>
-            
             <ProductsList />
         </>
     )
