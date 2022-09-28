@@ -9,7 +9,7 @@ const pool = require('../db')
 router.get('/user/:id', async (req, res) => { 
     const {id} = req.params;   
     try {
-        allUserBasketItems = await pool.query('SELECT basket.quanity, basket.user_id, products.id, products.name, products.description, products.image FROM basket LEFT JOIN products ON basket.product_id = products.id WHERE user_id = $1 ORDER BY id', [id]); 
+        allUserBasketItems = await pool.query('SELECT basket.quanity, basket.user_id, products.id, products.price, products.name, products.description, products.image FROM basket LEFT JOIN products ON basket.product_id = products.id WHERE user_id = $1 ORDER BY id', [id]); 
         res.json(allUserBasketItems.rows)  
     } catch (err) {
         console.error(err.message);

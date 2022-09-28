@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 //takes req.body.username and req.body.password and passes it into passport local strategy
 app.post('/login', passport.authenticate("local"), (req, res, next) => {
     console.log(req.isAuthenticated());
-    // res.send(req.user);
+    res.send(req.user);
     next()
 })
 

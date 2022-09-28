@@ -1,13 +1,16 @@
 import {Link, NavLink} from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addBasketTotal } from '../redux/basketSlice.js';
 
 
 export default function Navbar() {
 
-    let userData = useSelector(state => state.user.value)
+    const dispatch = useDispatch();
+    let userData = useSelector(state => state.user.value) 
+    let basketTotal = useSelector(state => state.basket.total)     
 
     let navClass = ({ isActive }) => (isActive ? 'navActive' : 'navInactive')
-
 
     return (
         <div className = 'nav'>
@@ -21,8 +24,8 @@ export default function Navbar() {
                 <li> <NavLink to='/gadgets' className={navClass} > gadgets </NavLink> </li>
                 {
                  (userData != 'noData') ? 
-                 <li> <NavLink to='/basket' className={navClass} > basket </NavLink> </li> 
-                        : <li> <NavLink to='/basket' className='hidden'  > basket </NavLink> </li>                    
+                 <li> <NavLink to='/basket' className={navClass + ' basket'}  > Basket £{basketTotal} </NavLink> </li> 
+                        : <li> <NavLink to='/basket' className='hidden' > basket </NavLink> </li>                    
                 }
                 {
                  (userData != 'noData') ? 

@@ -11,7 +11,8 @@ const BasketList = () => {
    
     const dispatch = useDispatch();
     const basketItems = useSelector(state => state.basket.value)
-    const user_id = useSelector(state => state.user.value.id)
+    const user_id = useSelector(state => state.user.value.id)    
+    let basketTotal = useSelector(state => state.basket.total)     
 
     //fetch data from API and adds to basket state
     useEffect(() => {
@@ -35,12 +36,13 @@ const BasketList = () => {
                     description = {basketItems.description}
                     price = {basketItems.price}
                     categoryId = {basketItems.category_id}
-                    quanity = {basketItems.quanity}
-                    
-                    image = {basketItems.image}
-                    
+                    quanity = {basketItems.quanity}                    
+                    image = {basketItems.image}                    
                 />     
             )}
+            <div className = 'basket'> 
+                Basket Total: £{basketTotal}
+            </div>
         </div>
     )
 }

@@ -5,6 +5,7 @@ import { addItemToBasket, updateItemInBasket, deleteItemInBasket } from '../api/
 import { useDispatch, useSelector } from 'react-redux';
 import { addBasket } from '../redux/basketSlice';
 import { getBasket } from '../api/basket';
+import { addBasketTotal } from '../redux/basketSlice';
 
 
 const AddRemoveButtons = (props) => { 
@@ -30,7 +31,17 @@ const AddRemoveButtons = (props) => {
 
         let basket = await getBasket(userData.id);
         console.log(basket)
-        dispatch(addBasket(basket))        
+        dispatch(addBasket(basket))
+ 
+        let basketTotal = 0;
+
+        basket.forEach(item => {
+            console.log(item.price)
+            basketTotal += parseFloat(item.price)*parseFloat(item.quanity)
+            console.log(basketTotal)
+        });    
+        dispatch(addBasketTotal(Math.round(basketTotal)))
+            
     }
 
     const handleRemoveClick = async () => {
@@ -46,16 +57,21 @@ const AddRemoveButtons = (props) => {
             await updateItemInBasket(props.id, newQuanity)            
         }
 
-
         let basket = await getBasket(userData.id);
         console.log(basket)
         dispatch(addBasket(basket))
-
         
-    }
+        let basketTotal = 0;
+        
+        
+        basket.forEach(item => {
+            console.log(item.price)
+            basketTotal += parseFloat(item.price)*parseFloat(item.quanity)
+            console.log(basketTotal)
+        });    
 
-    
-    
+        dispatch(addBasketTotal(Math.round(basketTotal)))        
+    }    
 
     return (
         <div className='addRemoveButtons'>
