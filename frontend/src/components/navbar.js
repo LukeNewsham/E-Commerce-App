@@ -1,17 +1,14 @@
 import {Link, NavLink} from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { addBasketTotal } from '../redux/basketSlice.js';
-
 
 export default function Navbar() {
 
-    const dispatch = useDispatch();
     let userData = useSelector(state => state.user.value) 
     let basketTotal = useSelector(state => state.basket.total)     
 
     let navClass = ({ isActive }) => (isActive ? 'navActive' : 'navInactive')
 
+    //JSX -------------------
     return (
         <div className = 'nav'>
             <Link to='/' className = 'siteTitle'> Gizmo. </Link>
@@ -31,9 +28,7 @@ export default function Navbar() {
                  (userData != 'noData') ? 
                     <li> <NavLink to='/account' className={navClass}> account </NavLink> </li> 
                         : <li> <NavLink to='/login' className={navClass} > login </NavLink> </li>                    
-                }
-                
-                
+                }        
             </ul>
         </div>
     )

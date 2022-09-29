@@ -1,7 +1,6 @@
 import { api_endpoint } from ".";
 
-
-//function to get all basket items from id
+//FUNCTION to GET basket items by id -------------------
 export const getBasket = async (id) => {
     const response = await fetch(`${api_endpoint}/baskets/user/${id}`);
     const basketItems = await response.json();
@@ -10,14 +9,13 @@ export const getBasket = async (id) => {
   };
 
 
-//add product to basket
-export const addItemToBasket = async (newProduct_id, newUser_id, newQuanity) => {
-    
+//FUNCTION to POST item to basket items with user id -------------------
+export const addItemToBasket = async (newProduct_id, newUser_id, newQuantity) => {    
     const response = await fetch(`${api_endpoint}/baskets`, {
         method: 'POST',
         body: JSON.stringify({
             product_id: newProduct_id,
-            quanity: newQuanity,
+            quantity: newQuantity,
             user_id: newUser_id
         }),
         headers: {
@@ -28,16 +26,14 @@ export const addItemToBasket = async (newProduct_id, newUser_id, newQuanity) => 
     return newBasketItem
 };
 
+//FUNCTION to POST an update for a product in basket by product id -------------------
+export const updateItemInBasket = async (newId, newQuantity) => {
 
-
-//update product in basket
-export const updateItemInBasket = async (newId, newQuanity) => {
-
-    console.log(`Updating item ${newId} to quantity ${newQuanity}`) 
+    console.log(`Updating item ${newId} to quantity ${newQuantity}`) 
     const response = await fetch(`${api_endpoint}/baskets/update`, {
         method: 'POST',
         body: JSON.stringify({
-            quanity: newQuanity,
+            quantity: newQuantity,
             id: newId           
         }),
         headers: {
@@ -48,7 +44,7 @@ export const updateItemInBasket = async (newId, newQuanity) => {
     return updatedBasketItem
 };
 
-//delete product in basket
+//FUNCTION to DELETE a product in basket by product id -------------------
 export const deleteItemInBasket = async (product_id) => {
     console.log(`Deleting product with id: ${product_id}`)
     const response = await fetch(`${api_endpoint}/baskets/${product_id}`, {

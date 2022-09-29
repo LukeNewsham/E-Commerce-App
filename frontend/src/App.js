@@ -1,10 +1,8 @@
 import './App.css';
 import Navbar from './components/navbar.js';
 import {Route, Routes} from "react-router-dom";
-import React, {useState, useEffect} from 'react';
 
-//Pages
-import HomePage from './pages/home/home';
+import HomePage from './pages/home';
 import ProductsPage from './pages/products';
 import AccountPage from './pages/account';
 import BasketPage from './pages/basket';
@@ -14,8 +12,6 @@ import ProductsDetailsPage from './pages/product_details';
 import MobilePhonesPage from './pages/mobilephones';
 import GadgetsPage from './pages/gadgets';
 import LaptopsPage from './pages/laptops';
-
-
 
 function App() {
   return (
@@ -32,9 +28,7 @@ function App() {
           <Route path='/basket' element = {<BasketPage />} />
           <Route path='/account' element = {<AccountPage />} />
           <Route path='/login' element = {<LoginPage />} />
-          <Route path='/register' element = {<RegisterPage />} />
-          
-          
+          <Route path='/register' element = {<RegisterPage />} /> 
         </Routes>
       </div>     
     </>

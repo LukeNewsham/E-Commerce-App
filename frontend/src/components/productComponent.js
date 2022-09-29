@@ -1,24 +1,21 @@
 //product page -> productListComponent -> productComponent
 
-import React, {useState, useEffect} from 'react';
-
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { updateProductDetails } from '../redux/productDetailsSlice';
-
-
 
 const Product = (props) => { 
 
     const dispatch = useDispatch();
+    const image = require(`../media/images/${props.image}`);
+
+    //FUNCTION which adds clicked products details to state for products details page
     const updateProductDetailsId = (e) => {     
         console.log(props) 
         dispatch(updateProductDetails(props))  
-    }
-const image = require(`../media/images/${props.image}`);
-   
+    };
     
-    
+    //JSX -------------------    
     return (
         <Link to='/products/product_details' className='productComponent' onClick = {updateProductDetailsId}>  
             <div >                           

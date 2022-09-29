@@ -1,6 +1,6 @@
 //product page -> productListComponent -> productComponent -> addRemoveBasketComponent
+//basket page -> basketListComponent -> basketItemComponent -> addRemoveBasketComponent
 
-import React, {useState, useEffect} from 'react';
 import { addItemToBasket, updateItemInBasket, deleteItemInBasket } from '../api/basket';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBasket } from '../redux/basketSlice';
@@ -8,76 +8,62 @@ import { getBasket } from '../api/basket';
 import { addBasketTotal } from '../redux/basketSlice';
 
 
-const AddRemoveButtons = (props) => { 
+const AddRemoveButtons = (props) => {
+    let dispatch = useDispatch();
+    let userData = useSelector(state => state.user.value);
 
-    let dispatch = useDispatch()
-
-    let userData = useSelector(state => state.user.value)
-
-
+    //FUNCTION to handle add button -------------------
     const handleAddClick = async () => {
-        console.log('Add clicked!');
-        let newQuanity = props.quanity + 1;
-        console.log(newQuanity)
 
-        if (props.quanity === 0) {
-            console.log('Added item to basket')
+        //STEP 1: Add 1 to current quantity, if quantity was originally 0, add to basket. If not, update -------------------
+        let newQuantity = props.quantity + 1;
+        if (props.quantity === 0) {
             await addItemToBasket(props.id, userData.id, 1)
         } else {
-            console.log(`Updated item with id: ${props.id} in basket`)
-            await updateItemInBasket(props.id, newQuanity)
+            await updateItemInBasket(props.id, newQuantity)
         }
 
-
+        //STEP 2: Get updated basket data. Push updates to basket state -------------------
         let basket = await getBasket(userData.id);
-        console.log(basket)
         dispatch(addBasket(basket))
- 
-        let basketTotal = 0;
 
+        //STEP 3: Update basket total -------------------
+        let basketTotal = 0;
         basket.forEach(item => {
-            console.log(item.price)
-            basketTotal += parseFloat(item.price)*parseFloat(item.quanity)
-            console.log(basketTotal)
-        });    
+            basketTotal += parseFloat(item.price) * parseFloat(item.quantity)
+        });
         dispatch(addBasketTotal(Math.round(basketTotal)))
-            
-    }
+    };
 
+    //FUNCTION to handle remove button -------------------
     const handleRemoveClick = async () => {
-        console.log('Remove clicked!');
-        let newQuanity = props.quanity - 1;
-        console.log(newQuanity)
 
-        if (props.quanity === 1) {            
-            await deleteItemInBasket(props.id)
-            console.log(`Deleted item in basket with id ${props.id}`)
+        //STEP 1: Remove 1 to current quantity, if quantity becomes 0, delete item. If not, update -------------------
+        let newQuantity = props.quantity - 1;
+        if (props.quantity === 1) {
+            await deleteItemInBasket(props.id);
         } else {
-            console.log(`Updated item with id: ${props.id} in basket`)
-            await updateItemInBasket(props.id, newQuanity)            
-        }
+            await updateItemInBasket(props.id, newQuantity)
+        };
 
+        //STEP 2: Get updated basket data. Push updates to basket state -------------------
         let basket = await getBasket(userData.id);
-        console.log(basket)
         dispatch(addBasket(basket))
-        
+
+        //STEP 3: Update basket total -------------------
         let basketTotal = 0;
-        
-        
         basket.forEach(item => {
-            console.log(item.price)
-            basketTotal += parseFloat(item.price)*parseFloat(item.quanity)
-            console.log(basketTotal)
-        });    
+            basketTotal += parseFloat(item.price) * parseFloat(item.quantity)
+        });
+        dispatch(addBasketTotal(Math.round(basketTotal)))
+    };
 
-        dispatch(addBasketTotal(Math.round(basketTotal)))        
-    }    
-
+    //JSX -------------------
     return (
         <div className='addRemoveButtons'>
-            <button className='addRemoveButton' onClick = {handleAddClick}> + </button> 
-            <p className='addRemoveButton'> {props.quanity}  </p>
-            <button className='addRemoveButton' onClick = {handleRemoveClick}> - </button>            
+            <button className='addRemoveButton' onClick={handleAddClick}> + </button>
+            <p className='addRemoveButton'> {props.quantity}  </p>
+            <button className='addRemoveButton' onClick={handleRemoveClick}> - </button>
         </div>
     )
 }

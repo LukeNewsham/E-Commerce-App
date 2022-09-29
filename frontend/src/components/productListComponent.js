@@ -1,4 +1,4 @@
-//product page -> productListComponent -> productComponent
+//product page -> productListComponent 
 
 import React, {useState, useEffect} from 'react';
 import {getProducts} from '../api/products.js';

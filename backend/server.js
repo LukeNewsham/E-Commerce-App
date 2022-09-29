@@ -68,12 +68,12 @@ app.post('/login', passport.authenticate("local"), (req, res, next) => {
 //ROUTES
 
 //users
-const userRouter = require('./routes/users.js') //variable to connect to user routes
-app.use('/users', userRouter); //connecting variable to all URL starting with users
+const userRouter = require('./routes/users.js') 
+app.use('/users', userRouter); 
 
-//user_details
-const userDetailsRouter = require('./routes/user_details.js')
-app.use('/user_details', userDetailsRouter);
+//users_details
+const userDetailsRouter = require('./routes/users_details.js')
+app.use('/users_details', userDetailsRouter);
 
 //products
 const productsRouter = require('./routes/products.js')

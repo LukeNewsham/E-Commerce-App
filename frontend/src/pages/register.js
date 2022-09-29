@@ -1,4 +1,4 @@
-import {Link, useInRouterContext, useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {addNewUser} from '../api/users';
 import { useDispatch, useSelector } from 'react-redux';
 import {updateNewUsername, updateNewFirstName, updateNewLastName, updateNewEmail, updateNewPassword, updateNewDOB, updateNewConfirmPassword} from '../redux/registerSlice.js';
@@ -18,28 +18,24 @@ export default function RegisterPage() {
     const newDOB = useSelector(state => state.registerData.newDOB);
     const newPassword = useSelector(state => state.registerData.newPassword);
     const newConfirmPassword = useSelector(state => state.registerData.newConfirmPassword);
-    
 
-    
-
-
-    //FUNCTIONS FOR REGISTER COMPONENT
+    //FUNCTION to register a new user
     const onAddNewUser = async (e) => {
         
         e.preventDefault();
 
+        //STEP 1: POST new user, if returns false then username is taken, show error. If true, redirect to login page
         const user = await addNewUser(newUsername, newFirstName, newLastName, newEmail, newPassword)
         if (!user) {
             console.log('Username taken');
             setUsernameError(true);
             return
-        }
-        console.log(user)        
+        }      
         navigate('../login')
     }
 
 
-    //INPUT DATA 
+    //FORM INPUTS ------------------- 
     const inputs = [
         {
             type:'text',
@@ -113,21 +109,15 @@ export default function RegisterPage() {
                 dispatch(updateNewConfirmPassword(e.target.value))
             },
             errorMessage: 'Passwords should match'   
-        }
-
-        
+        }       
     ]
 
 
 
-    //RENDER FOR REGISTER COMPONENT 
-    return (
-
-
-        
+    //JSX ------------------- 
+    return (        
         <div className='form'>
             <h1> Sign Up </h1>
-
              <div> 
                 <form onSubmit={onAddNewUser}>
 
@@ -138,7 +128,8 @@ export default function RegisterPage() {
                     {
                     (usernameError) ? 
                         <p className='usernameErrorMessage'> Username is taken </p>
-                            : ''                    
+                            : 
+                            ''                    
                     }       
 
                     <button type='submit' className='submit'> Sign Up </button> 
@@ -149,17 +140,7 @@ export default function RegisterPage() {
                     </button>
                     
                 </form>
-                
-
-                
-                
-
-                
             </div> 
-
-            
-                
-           
         </div>
     )
 }

@@ -1,25 +1,20 @@
 import { api_endpoint } from "./index.js";
 
-
-
-//function to register a new user with a json body
+//FUNCTION to POST a new user -------------------
 export const addNewUser = async (newUsername, newFirst_name, newLast_name, newEmail, newPassword) => {
     console.log(newUsername, newFirst_name, newLast_name, newEmail, newPassword)
 
-
-    //check if username is taken
+    //STEP 1: Check if username is taken
     const usernameResponse = await fetch(`${api_endpoint}/users/username/${newUsername}`);
     console.log(usernameResponse)
     const usernameStatus = await usernameResponse.json();
     console.log(usernameStatus)
-    
     if (usernameStatus.length !== 0) {
         console.log(usernameStatus.length)
         return false
-    }
+    };
 
-
-    //sends data
+    //STEP 2: If username is not taken, send user data
     const response = await fetch(`${api_endpoint}/users`, {
         method: 'POST',
         body: JSON.stringify({
@@ -32,25 +27,19 @@ export const addNewUser = async (newUsername, newFirst_name, newLast_name, newEm
         headers: {
             'Content-Type': 'application/json'
         },
-    })
+    });
+
+    //STEP 3: Returns new user data for check if successfully added   
     const newUser = await response.json()
     return newUser
 };
 
-
-
-//login a user
+//FUNCTION to POST a user to check if authorized -------------------
 export const loginUser = async (loginUsername, loginPassword) => {
-    console.log(`loginUser function successfully passing in username: ${loginUsername} and password: ${loginPassword} `);
-    
+
+    //STEP 1: Send user data to be checked
     const response = await fetch(`${api_endpoint}/login`, {
         method: 'POST',
-        // credentials: "include",
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json',
-        //         'Access-Control-Allow-Origin': 'http://localhost:3001/'
-        //     },
         body: JSON.stringify({
             username: loginUsername,
             password: loginPassword
@@ -59,18 +48,14 @@ export const loginUser = async (loginUsername, loginPassword) => {
             'Content-Type': 'application/json'
         },
     })
-    const user = await response.json();
-    console.log('Received login data: ')
-    console.log(user)
 
+    //STEP 2: If user holds user data, return user. If not, return false
+    const user = await response.json();
     if (user) {
-        console.log('Authenticated User')
         return user
     } else {
-        console.log('Failed to authenticated User')
         return false
     }
-    
 };
 
 
