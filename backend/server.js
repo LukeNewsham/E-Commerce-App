@@ -3,30 +3,77 @@ const app = express()
 const cors = require('cors')
 const pool = require("./db.js")
 const session = require('express-session');
+const store = new session.MemoryStore();
 const passport = require('passport');
-const flash = require('express-flash')
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require("bcrypt");
+const findUserByUsername = require('./passportHelperFunctions.js');
+const findUserById = require('./passportHelperFunctions.js');
+
 
 //MIDDLEWARE 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(cors());
+app.use(cors({
+    origin : 'http://localhost:3001',
+    credentials: true,
+    preflightContinue: true,
+}));
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(session({
     secret: 'secret',
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24,
-        sameSite: false
-    }
+        sameSite: false,
+        secure: false,
+        maxAge: 300000000,
+    },
+    store
 }));
 
+//adds passport with user id into express session 
+passport.serializeUser((user, done) => {
+    console.log(`Serializing user with ID: ${user.id}`);
+    done(null, user.id);
+});
 
+//checks if user id matches passport id in express session
+passport.deserializeUser( async (id, done) => { 
+    console.log(`deserializing user with ID: ${id}`);
+    let user = await findUserById(id) ;
+    if (user) {
+        return done(null, user)
+    } else {
+        return done(null, false)
+    }
+});
 
-//grabs the passport config and then re initializes every time the frontend accesses the back end
-require('./passport-config');
+//callback function to verify user with given username and password. Returns done with result
+const verifyCallback = async (username, password, done) => {   
+    
+    //find user in database by username            
+    const user = await findUserByUsername(username);   
+    
+    if (!user) {
+        console.log('No user')
+        return done(null, false)
+    };
+    
+    bcryptCompared = await bcrypt.compare(password, user.password);
+    
+    if (bcryptCompared === true) {
+        console.log(`Passwords match! Sending Done`)
+        return done(null, user)
+    } else {
+        console.log(`Passwords do not match. Sending Done`)
+        return done(null, false)        
+    }            
+};
+
+passport.use(new LocalStrategy(verifyCallback));
 app.use(passport.initialize());
 app.use(passport.session());
 

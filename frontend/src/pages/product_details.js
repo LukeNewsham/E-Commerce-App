@@ -4,8 +4,9 @@ import AddRemoveButtons from '../components/addRemoveBasketComponent';
 
 export default function ProductsDetailsPage() {
 
-    const image = require(`../media/images/${productDetails.image}`);
     let productDetails = useSelector(state => state.productDetails.value)
+    const image = require(`../media/images/${productDetails.image}`);
+    
     let basketItems = useSelector(state => state.basket.value)
 
     //STEP 1: Sets basket quantity to 0 by default, and updates if there is basket data
