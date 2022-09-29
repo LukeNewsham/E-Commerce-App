@@ -4,6 +4,7 @@ const pool = require('../db');
 
 // GET basket items by user id from baskets -------------------
 router.get('/user/:id', async (req, res) => {
+    console.log(req.user);
     const { id } = req.params;
     try {
         allUserBasketItems = await pool.query('SELECT basket.quantity, basket.user_id, products.id, products.price, products.name, products.description, products.image FROM basket LEFT JOIN products ON basket.product_id = products.id WHERE user_id = $1 ORDER BY id', [id]);

@@ -2,7 +2,13 @@ import { api_endpoint } from ".";
 
 //FUNCTION to GET basket items by id -------------------
 export const getBasket = async (id) => {
-    const response = await fetch(`${api_endpoint}/baskets/user/${id}`);
+    const response = await fetch(`${api_endpoint}/baskets/user/${id}`, {
+        credentials: 'include',
+        headers: {
+          'Accept': 'application/json',
+          'Access-Control-Allow-Origin': 'http://localhost:3001/'
+      }
+      });
     const basketItems = await response.json();
       
     return basketItems;

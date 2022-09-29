@@ -4,6 +4,7 @@ const pool = require('../db')
 
 // GET all products from products -------------------
 router.get('/', async (req, res) => {
+    console.log(`Products route getting passport data: ${req.isAuthenticated()}`);
     try {
         const allProducts = await pool.query('SELECT * FROM products');
         res.json(allProducts.rows)

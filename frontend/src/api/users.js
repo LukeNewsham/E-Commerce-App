@@ -40,12 +40,15 @@ export const loginUser = async (loginUsername, loginPassword) => {
     //STEP 1: Send user data to be checked
     const response = await fetch(`${api_endpoint}/login`, {
         method: 'POST',
+        credentials: 'include',
         body: JSON.stringify({
             username: loginUsername,
             password: loginPassword
         }),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:3000/',
+            'Accept': 'application/json',
         },
     })
 

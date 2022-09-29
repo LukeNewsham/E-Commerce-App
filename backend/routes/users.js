@@ -29,16 +29,16 @@ router.post('/', async (req, res) => {
     }    
 });
 
-// GET user from users by id (REGISTER CHECK) -------------------
-// router.get('/id/:id', async (req, res) => {
-//     const {id} = req.params;
-//     try {
-//         const user = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
-//         res.json(user.rows)
-//     } catch (err) {
-//         console.error(err.message);
-//     }
-// });
+// GET user from users by id (DESERIALIZE) -------------------
+router.get('/id/:id', async (req, res) => {
+    const {id} = req.params;
+    try {
+        const user = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+        res.json(user.rows)
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
 // export default router
 module.exports = router

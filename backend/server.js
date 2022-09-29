@@ -9,8 +9,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require("bcrypt");
-const findUserByUsername = require('./passportHelperFunctions.js');
-const findUserById = require('./passportHelperFunctions.js');
+const findUserByUsername = require('./passportHelperFunctions.js').findUserByUsername;
+const findUserById = require('./passportHelperFunctions.js').findUserById;
 
 
 //MIDDLEWARE 
@@ -51,37 +51,31 @@ passport.deserializeUser( async (id, done) => {
     }
 });
 
-//callback function to verify user with given username and password. Returns done with result
-const verifyCallback = async (username, password, done) => {   
+passport.use(new LocalStrategy(
+    async (username, password, done) => {   
     
-    //find user in database by username            
-    const user = await findUserByUsername(username);   
-    
-    if (!user) {
-        console.log('No user')
-        return done(null, false)
-    };
-    
-    bcryptCompared = await bcrypt.compare(password, user.password);
-    
-    if (bcryptCompared === true) {
-        console.log(`Passwords match! Sending Done`)
-        return done(null, user)
-    } else {
-        console.log(`Passwords do not match. Sending Done`)
-        return done(null, false)        
-    }            
-};
+        //find user in database by username            
+        const user = await findUserByUsername(username);   
+        
+        if (!user) {
+            console.log('No user')
+            return done(null, false)
+        };
+        
+        bcryptCompared = await bcrypt.compare(password, user.password);
+        
+        if (bcryptCompared === true) {
+            console.log(`Passwords match! Sending Done`)
+            return done(null, user)
+        } else {
+            console.log(`Passwords do not match. Sending Done`)
+            return done(null, false)        
+        }            
+    }
+));
 
-passport.use(new LocalStrategy(verifyCallback));
 app.use(passport.initialize());
 app.use(passport.session());
-
-// //console logs data for debugging
-app.use((req, res, next) => {
-    console.log(req.isAuthenticated());
-    next();
-})
 
 
 //LOGIN A USER

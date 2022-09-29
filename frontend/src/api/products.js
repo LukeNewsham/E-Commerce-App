@@ -2,7 +2,13 @@ import { api_endpoint } from "./index.js";
 
 //FUNCTION to GET all products -------------------
 export const getProducts = async () => {
-  const response = await fetch(`${api_endpoint}/products`);
+  const response = await fetch(`${api_endpoint}/products`, {
+    credentials: 'include',
+    headers: {
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': 'http://localhost:3001/'
+  }
+  });
   const products = await response.json();
   return products;
 };
