@@ -11,16 +11,6 @@ const ProductsList = (props) => {
     const products = useSelector(state => state.products.value)
     const dispatch = useDispatch();
 
-    //fetch data from API 
-    useEffect(() => {
-        async function fetchData() {
-            const productsData = await getProducts();
-            // setProducts(productsData) 
-            dispatch(addProducts(productsData))
-        }
-        fetchData()        
-    }, [])
-
     
     //what is being returned from ProductsList
     return (

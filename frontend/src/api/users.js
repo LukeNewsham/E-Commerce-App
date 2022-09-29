@@ -1,5 +1,21 @@
 import { api_endpoint } from "./index.js";
 
+
+
+
+export const checkAuth = async () => {
+    const response = await fetch(`${api_endpoint}/auth`, {
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3001/'
+    }
+    });
+    const authorized = await response.json();
+    return authorized;
+  };
+
+
 //FUNCTION to POST a new user -------------------
 export const addNewUser = async (newUsername, newFirst_name, newLast_name, newEmail, newPassword) => {
     console.log(newUsername, newFirst_name, newLast_name, newEmail, newPassword)

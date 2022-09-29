@@ -40,6 +40,7 @@ passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
+
 //checks if user id matches passport id in express session
 passport.deserializeUser( async (id, done) => { 
     console.log(`deserializing user with ID: ${id}`);
@@ -76,6 +77,17 @@ passport.use(new LocalStrategy(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+//Checks if passport has data
+app.get('/auth', (req, res, next) => {
+    if (req.isAuthenticated) {
+        let user = req.user
+        res.send(user);
+    } else {
+        res.send('noData');
+    }
+})
 
 
 //LOGIN A USER
