@@ -1,5 +1,3 @@
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -9,40 +7,12 @@
 <h3 align="center">project_title</h3> 
 </div>
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
 
 
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 PERN Stack:
@@ -51,7 +21,6 @@ PERN Stack:
 * ![React.js]
 * ![NodeJS]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## Installation and Running
@@ -77,38 +46,40 @@ To get a local copy up and running follow these simple steps.
       ```sh
       npm run start    
       ```
-      
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## Usage
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-## Contact
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+**Main File Structure**
+- Components
+    - navbar
+    - addButton
+    - addRemoveButton
+    - basketItem
+    - basketList
+    - formInput
+    - product
+    - productsList
+- Pages
+    - account
+    - basket
+    - gadgets
+    - home
+    - laptops
+    - login
+    - mobile_phones
+    - product_details
+    - register
+    - 
+**Component Structure**
+- **product details page** - addButton (basket item = 0)
+- **product details page** - addRemoveButton (basket item > 0)                                               
+- **product page**  -  productsList  -  product  -  addRemoveButton
+- **basket page**  -  basketList  -  basketItem  -  addRemoveButton
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
