@@ -54,7 +54,7 @@ To get a local copy up and running follow these simple steps.
 
 ## Roadmap
 
-**Main File Structure**
+**Component & Pages File Structure**
 - Components
     - navbar
     - addButton
@@ -74,12 +74,18 @@ To get a local copy up and running follow these simple steps.
     - mobile_phones
     - product_details
     - register
-    - 
-**Component Structure**
-- **product details page** - addButton (basket item = 0)
-- **product details page** - addRemoveButton (basket item > 0)                                               
-- **product page**  -  productsList  -  product  -  addRemoveButton
-- **basket page**  -  basketList  -  basketItem  -  addRemoveButton
+    
+**Component & Pages Usage Structure**
+- app - navbar
+
+- app (router)  -  account
+- app (router)  -  login  - formInput 
+- app (router)  -  register  -  formInput
+- app (router)  -  product details page - addButton (basket item = 0)
+- app (router)  -  product details page - addRemoveButton (basket item > 0)                                               
+- app (router)  -  product page  -  productsList  -  product  -  addRemoveButton
+- app (router)  -  basket page  -  basketList  -  basketItem  -  addRemoveButton
+
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
