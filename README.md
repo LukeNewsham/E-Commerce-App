@@ -3,6 +3,8 @@
 
 A full stack, fully responsive, e-commerse application which uses the PERN stack (PostgreSQL, Express.js, React.js, Node.js). Users are able to log in and save their basket using passport.js.
 
+Database designed and updated by myself.
+
 
 
 
@@ -40,7 +42,26 @@ This project is still being developed. Remaining tasks include:
 
 ## Screenshots and Demo
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+#### Home page for easy site navigation
+![Gizmo Screenshot 1](https://user-images.githubusercontent.com/95356508/218988418-57039858-3dbd-4fe8-b762-b0ce9b0d4682.png)
+
+#### Product flex cards which dymanically update depending on screen size
+![Gizmo Screenshot 2](https://user-images.githubusercontent.com/95356508/218988429-2f7ec868-6fc9-4d4f-b132-b8eecf95884d.png)
+
+#### Product category pages
+![Gizmo Screenshot 3](https://user-images.githubusercontent.com/95356508/218988437-62c4105f-0aa0-43c3-8a6a-e3693efb5cd6.png)
+
+#### Unable to add to basket until logged in
+![Gizmo Screenshot 4](https://user-images.githubusercontent.com/95356508/218988443-13d9bad2-70fc-4bc1-9126-d080cdeb4924.png)
+
+#### Users profile displays (including Google and Facebook) and basket appears in navbar
+![Gizmo Screenshot 5](https://user-images.githubusercontent.com/95356508/218988455-93b4dcb9-0144-42fb-962f-3da19db8c2e5.png)
+
+#### Users basket clearly outlines products in basket ready to be checked out
+![Gizmo Screenshot 6](https://user-images.githubusercontent.com/95356508/218988461-6836cc52-ce1a-4038-a44c-abffcccc01be.png)
+
+#### Applicaion is fully responsive and works for all screen sizes
+![Mobile Screenshots](https://user-images.githubusercontent.com/95356508/218989735-9b606035-728b-44bc-b61f-67eed7b0c5f5.png)
 
 
 ## API Reference
