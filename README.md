@@ -25,7 +25,8 @@ Database designed and updated by myself.
 - Users are able to register and save their baske, details and orders to the database.
 - Basket data is saved locally so the user stays logged in through a webpage refresh/crash.
 - Users are able to log in using Goggle or Facebook, which saved the data to the database for an easier register/log in experience.
-- Products are loaded onto tiles, which can be sorted by category.
+- Products are loaded onto cards, which can be sorted by category.
+- Product cards are dynamic and will readjust to fit any screen size.
 - Products a details page once clicked for more infomation. 
 - The number count of products displays correctly across the site.
 - The basket appears in the navbar once the user has logged in, and displays the total basket cost.
