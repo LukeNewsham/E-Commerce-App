@@ -42,6 +42,8 @@ This project is still being developed. Remaining tasks include:
 
 ## Screenshots and Demo
 
+https://clipchamp.com/watch/CwRGOJuDMNr
+
 #### Home page for easy site navigation
 ![Gizmo Screenshot 1](https://user-images.githubusercontent.com/95356508/218988418-57039858-3dbd-4fe8-b762-b0ce9b0d4682.png)
 
